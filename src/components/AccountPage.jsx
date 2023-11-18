@@ -1,3 +1,4 @@
+import Logout from "./Logout"
 
 const AccountPage = () => {
 	return (
@@ -5,7 +6,7 @@ const AccountPage = () => {
 			<div>
 				<h1>Welcome back, mehmet</h1>
 				<p>Use your account to manage your orders, track deliveries and access your order history.</p>
-				<button>Sign out</button>
+				<button onClick={() => Logout()}>Sign out</button>
 			</div>
 			<div className="orders">
 				<h2>My Orders</h2>
