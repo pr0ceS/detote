@@ -1,0 +1,22 @@
+---
+import CountdownTimer from "./CountdownTimer"
+---
+<div class="infobanner">
+	<div class="infobanner-text">
+		<h2>
+			<CountdownTimer client:only />
+		</h2>
+		<h1>Don't miss out!</h1>
+		<p>We will give you a 50% discount if you place an order within the given time.</p>
+		<a class="a-button" href="/">Browse Products</a>
+	</div>
+	<img
+		class="banner-dots"
+		src={"/svg/Dots.svg"}
+		width="300"
+		height="300"
+		decoding="async"
+		loading="lazy"
+		alt="Banner Image"
+	/>
+</div>

@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import Bestsellers from '../components/Bestsellers.astro';
+import SmallBanner from '../components/SmallBanner.astro';
+import InfoBanner from '../components/InfoBanner.astro';
+
+const title = "Homepage"
+---
+
+<Layout title={title}>
+	<div class="index">
+		<Banner />
+		<Bestsellers />
+		<SmallBanner />
+		<InfoBanner />
+	</div>
+</Layout>
+
+<script>
+	import { initVisit } from '../stores/visit';
+	
+	initVisit();
+</script>

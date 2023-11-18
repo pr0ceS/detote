@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LoginPage from "../../components/LoginPage";
+
+const title = "Login"
+---
+
+<Layout title={title}>
+	<LoginPage client:load/>
+</Layout>
+
+<script>
+	import { DecodeCookie } from '../../components/DecodeCookie';
+	import { initVisit } from '../../stores/visit';
+
+	const authToken = DecodeCookie()
+
+	if(authToken) {
+		window.location.href = "/account"
+	} else {
+		initVisit();
+	}
+</script>
