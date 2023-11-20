@@ -1016,3 +1016,68 @@ input::placeholder {
 .form-login {
   height: 500px !important;
 }
+
+.account {
+  background: var(--bg2);
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.account-container {
+  width: 1200px;
+  display: flex;
+}
+
+.account .greeting {
+  padding: 20px;
+  flex: 3;
+}
+
+.account .greeting h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.account .greeting p {
+  color: var(--notblack);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+.account .greeting button {
+  width: 100%;
+}
+
+.account .greeting button svg {
+  margin-right: 5px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.account .orders {
+  padding: 20px;
+  flex: 6;
+}
+
+.account .orders h2 {
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.account .orders p {
+  font-size: 14px;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+}

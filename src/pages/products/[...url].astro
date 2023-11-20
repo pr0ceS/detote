@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CurrentlyViewingBanner from "../../components/CurrentlyViewingBanner";
+import Price from "../../components/Price";
+export async function getStaticPaths() {
+  const products = await fetch('http://localhost:5000/api/products').then((res) => res.json());
+
+  const paths = products.map((product) => ({
+    params: { url: product.url },
+    props: { 
+      name: product.name,
+      price: product.price,
+      oldPrice: product.oldPrice,
+    }
+  }));
+
+  return paths;
+}
+
+const { url } = Astro.params;
+const { name, price, oldPrice } = Astro.props;
+const title = name;
+---
+
+<Layout title={title}>
+  <section class="singlep-main">
+    <div></div>
+    <div>
+      <a href="/products">Back to all products</a>
+      <h1>{name}</h1>
+      <span>Save {(oldPrice - price).toFixed(2)}</span>
+    </div>
+    <div>
+      <CurrentlyViewingBanner client:only/>
+      <div>
+        <div>
+          <p>was <Price oldPrice={oldPrice} client:only/></p>
+          <h1><Price price={price} client:only/></h1>
+          <p>or buy now, pay later with </p>
+          <img
+					src="/svg/Klarna.svg"
+					width="45"
+					decoding="async"
+					loading="lazy"
+					alt="GooglePay"
+				/>
+        </div>
+        <div>
+          <button></button>
+          <div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="singlep-desc"></section>
+</Layout>

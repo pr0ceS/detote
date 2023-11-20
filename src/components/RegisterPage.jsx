@@ -13,27 +13,56 @@ const RegisterPage = () => {
       e.preventDefault();
 
 			if(user.confirmPassword === user.password) {
-				await fetch('http://localhost:5000/api/register', {
+				const res = await fetch('http://localhost:5000/api/register', {
 					method: "POST",
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({user: {name: user.name, email: user.email, password: user.password}})
 				})
-					.then(async (data) => {
-						const res = await data.json();
-						if(res.success) {
-							document.cookie = `auth_token=${await data.cookie}; SameSite=None;`;
-							window.location.href = "/account"
-						} else {
-							console.log(res.message);
+				
+				const data = await res.json();
+				if(data.success) {
+					Cookies.set('auth_token', data.cookie, {SameSite: "Lax"});
+					Toastify({
+						text: `Account created, redirecting`,
+						duration: 3000,
+						close: true,
+						gravity: "bottom",
+						position: "right",
+						style: {
+							background: "#22c55e",
 						}
-					})
+					}).showToast();
+					window.location.href = "/account"
+				} else {
+					Toastify({
+						text: `${data.message}`,
+						duration: 3000,
+						close: true,
+						gravity: "bottom",
+						position: "right",
+						style: {
+							background: "#dc2626",
+						}
+					}).showToast();
+				}
+
 			} else {
 				console.log("Passwords do not match")
 			}
     } catch (error) {
       console.log(error);
+			Toastify({
+				text: `SERVER ERROR: Please try again later`,
+				duration: 3000,
+				close: true,
+				gravity: "bottom",
+				position: "right",
+				style: {
+					background: "#dc2626",
+				}
+			}).showToast();
     }
   };
 

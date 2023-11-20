@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const res = await fetch('http://ip-api.com/json/?fields=status,continent,continentCode,country,countryCode,region,regionName,timezone,query')
+
+const data = await res.json();
+console.log(data);
+if(!data) {
+	return Astro.redirect('/');
+}
+const title = "Products"
+---
+
+<Layout title={title}>
+	<h1>Account Page</h1>
+</Layout>

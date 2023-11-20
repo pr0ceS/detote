@@ -1,10 +1,14 @@
 import { useState } from "react"
+import Cookies from "js-cookie";
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 const LoginPage = () => {
 	const [user, setUser] = useState({
     email: "",
     password: "",
   });
+
 
 	const handleSubmit = async (e) => {
     try {
@@ -18,18 +22,48 @@ const LoginPage = () => {
 				body: JSON.stringify({user})
 			});
 
+
 			const data = await res.json();
 			if(data.success) {
-				document.cookie = `auth_token=${await data.cookie}; SameSite=None;`;
+				Cookies.set('auth_token', data.cookie, {SameSite: "Lax"});
+				Toastify({
+					text: `Logged in, redirecting`,
+					duration: 3000,
+					close: true,
+					gravity: "bottom",
+					position: "right",
+					style: {
+						background: "#22c55e",
+					}
+				}).showToast();
 				window.location.href = "/account"
 			} else {
-				console.log(error);
+				Toastify({
+					text: `${data.message}`,
+					duration: 3000,
+					close: true,
+					gravity: "bottom",
+					position: "right",
+					style: {
+						background: "#dc2626",
+					}
+				}).showToast();
 			}
+
     } catch (error) {
       console.log(error);
+			Toastify({
+				text: `SERVER ERROR: Please try again later`,
+				duration: 3000,
+				close: true,
+				gravity: "bottom",
+				position: "right",
+				style: {
+					background: "#dc2626",
+				}
+			}).showToast();
     }
   };
-
 
 	return (
 		<form className="form form-login" onSubmit={(e) => handleSubmit(e)}>
@@ -43,6 +77,7 @@ const LoginPage = () => {
 						id="email" 
 						name="email" 
 						onChange={(e) => setUser({ ...user, email: e.target.value })}
+						value={user.email}
 						placeholder="Email"
 						required
 					/>
@@ -54,6 +89,7 @@ const LoginPage = () => {
 						id="password"
 						name="password"
 						onChange={(e) => setUser({ ...user, password: e.target.value })}
+						value={user.password}
 						placeholder="Password"
 						required
 					/>

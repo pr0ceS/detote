@@ -33,7 +33,7 @@ const CountdownTimer = () => {
   };
 
   return (
-		formatTime(duration)
+    formatTime(duration)
   );
 };
 

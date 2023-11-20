@@ -38,7 +38,7 @@ const BestProducts = () => {
 								{/* Don't forget to update currency before sending product.price and product.oldPrice */}
 								<GetRandomTheme price={product.price} locale={$locale.origin} oldPrice={product.oldPrice} />
 
-								<a href="/">
+								<a href={`/products/${product.url}`}>
 									<img
 										onMouseEnter={() => handleMouseEnter(product._id)}
 										onMouseLeave={() => handleMouseLeave(product._id)}
