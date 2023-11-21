@@ -15,18 +15,16 @@ const CurrentlyViewingBanner = () => {
   }, [currentlyViewing]);
 
   return (
-    <div>
-      <p>
-				<img
-          src="/svg/eye.svg"
-          width="14"
-          height="auto"
-          decoding="async"
-          loading="lazy"
-          alt="Eye icon"
-        />{currentlyViewing} people are currently looking at this product</p>
-				<span></span>
-    </div>
+    <>
+      <img
+        src="/svg/eye.svg"
+        width="14"
+        height="auto"
+        decoding="async"
+        loading="lazy"
+        alt="Eye icon"
+      />{currentlyViewing} people are currently looking at this product
+    </>
   );
 };
 

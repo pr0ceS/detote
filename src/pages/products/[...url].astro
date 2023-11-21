@@ -1,7 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CurrentlyViewingBanner from "../../components/CurrentlyViewingBanner";
-import Price from "../../components/Price";
+import Bundle from "../../components/Bundle";
+import AddToCart from "../../components/AddToCart";
+import SmallDesc from "../../components/SmallDesc";
+import Dropdowns from "../../components/Dropdowns";
+import { products } from '../../stores/products';
+
 export async function getStaticPaths() {
   const products = await fetch('http://localhost:5000/api/products').then((res) => res.json());
 
@@ -11,6 +16,9 @@ export async function getStaticPaths() {
       name: product.name,
       price: product.price,
       oldPrice: product.oldPrice,
+      image: product.image,
+      smallDescs: product.smallDesc,
+      dropdowns: product.dropdowns
     }
   }));
 
@@ -18,39 +26,43 @@ export async function getStaticPaths() {
 }
 
 const { url } = Astro.params;
-const { name, price, oldPrice } = Astro.props;
+const { name, price, oldPrice, image, smallDescs, dropdowns } = Astro.props;
 const title = name;
 ---
 
 <Layout title={title}>
   <section class="singlep-main">
-    <div></div>
-    <div>
-      <a href="/products">Back to all products</a>
-      <h1>{name}</h1>
-      <span>Save {(oldPrice - price).toFixed(2)}</span>
-    </div>
-    <div>
-      <CurrentlyViewingBanner client:only/>
-      <div>
-        <div>
-          <p>was <Price oldPrice={oldPrice} client:only/></p>
-          <h1><Price price={price} client:only/></h1>
-          <p>or buy now, pay later with </p>
-          <img
-					src="/svg/Klarna.svg"
-					width="45"
-					decoding="async"
-					loading="lazy"
-					alt="GooglePay"
-				/>
-        </div>
-        <div>
-          <button></button>
-          <div></div>
-        </div>
-
+    <div class="singlep-main-container">
+      <div class="singlep-main-image">
+        <img
+          src={image[0]}
+          width="600"
+          height="auto"
+          decoding="async"
+          loading="lazy"
+          alt="A description of my image."
+        />
       </div>
+      <section class="singlep-main-info">
+        <div class="titles">
+          <a href="/products">Back to all products</a>
+          <h1>{name}</h1>
+        </div>
+        <SmallDesc smallDescs={smallDescs} client:load />
+        <div class="product-payment">
+          <p class="currentlyviewing">
+            <CurrentlyViewingBanner client:only/>
+          </p>
+          <div class="product-bundle">
+            <Bundle price={price} oldPrice={oldPrice} client:load/>
+            <p>Free shipping included</p>
+            <AddToCart client:load />
+          </div>
+        </div>
+        <div class="dropdowns">
+          <Dropdowns dropdowns={dropdowns} client:load />
+        </div>
+      </section>
     </div>
   </section>
   <section class="singlep-desc"></section>

@@ -3,7 +3,7 @@ import { navigate } from "astro/transitions/router";
 
 export const getProducts = async () => {
 	try {
-		const res = await fetch("http://192.168.2.2:5000/api/products/");
+		const res = await fetch("http://localhost:5000/api/products/");
 		
 		const data = await res.json();
 		return data;
