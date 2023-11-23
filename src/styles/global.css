@@ -82,6 +82,9 @@ select:focus {
   font-size: 1rem;
   background-color: black;
   color: white;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
 }
 
 .button:hover, .a-button:hover {
@@ -671,6 +674,11 @@ select:focus {
   height: 20px;
 }
 
+.placeholder-bundle {
+  width: 70px;
+  height: 48px;
+}
+
 .smallbanner {
   width: 100%;
   background: var(--primary);
@@ -1096,7 +1104,25 @@ input::placeholder {
 }
 
 .singlep-main-image {
-  border: 1px solid black;
+  width: 600px;
+}
+
+.singlep-main-image > img {
+  object-fit: cover;
+  height: 650px;
+}
+
+.image-thumbnails {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.image-thumbnails img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  cursor: pointer;
 }
 
 .singlep-main-info {
@@ -1175,7 +1201,7 @@ input::placeholder {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px 25px;
+  padding: 20px 35px;
 }
 
 .bundles .option-selected {
@@ -1305,3 +1331,60 @@ input::placeholder {
   background: #34c759;
 }
 
+.dropdowns {
+  background: white;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 0 20px;
+}
+
+.dropdowns .dropdown:last-child {
+  border-bottom: none;
+}
+
+.dropdown.open .dropdown {
+  border-bottom: 1px solid #dbdbdb !important;
+}
+
+.dropdown {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.dropdown-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0; 
+}
+
+.dropdown h1 {
+  font-weight: 400;
+  font-size: 16px;
+  color: #3b3b3b;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
+}
+
+.dropdown-p {
+  max-height: 0;
+  overflow: hidden;
+  color: #707070;
+  transition: max-height 0.15s ease-in-out;
+}
+
+.dropdown.open .dropdown-p {
+  max-height: 300px;
+}
+
+.dropdown .dropdown-p p {
+  padding-bottom: 20px;
+}

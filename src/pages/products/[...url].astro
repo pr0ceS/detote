@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ProductImages from "../../components/ProductImages";
 import CurrentlyViewingBanner from "../../components/CurrentlyViewingBanner";
 import Bundle from "../../components/Bundle";
 import AddToCart from "../../components/AddToCart";
@@ -33,16 +34,7 @@ const title = name;
 <Layout title={title}>
   <section class="singlep-main">
     <div class="singlep-main-container">
-      <div class="singlep-main-image">
-        <img
-          src={image[0]}
-          width="600"
-          height="auto"
-          decoding="async"
-          loading="lazy"
-          alt="A description of my image."
-        />
-      </div>
+      <ProductImages images={image} client:load/>
       <section class="singlep-main-info">
         <div class="titles">
           <a href="/products">Back to all products</a>
@@ -65,5 +57,7 @@ const title = name;
       </section>
     </div>
   </section>
-  <section class="singlep-desc"></section>
+  <section class="singlep-desc">
+    
+  </section>
 </Layout>

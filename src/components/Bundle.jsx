@@ -97,7 +97,14 @@ const Bundle = ({ price, oldPrice }) => {
 			</div>
 		</div>
 	) : (
-		<p>Loading...</p>
+		<div className="bundles">
+			<div className="bundle placeholder-bundle skeleton">
+			</div>
+			<div className="bundle placeholder-bundle skeleton">
+			</div>
+			<div className="bundle placeholder-bundle skeleton">
+			</div>
+		</div>
 	)
 }
 
