@@ -6,20 +6,24 @@ import Bundle from "../../components/Bundle";
 import AddToCart from "../../components/AddToCart";
 import SmallDesc from "../../components/SmallDesc";
 import Dropdowns from "../../components/Dropdowns";
-import { products } from '../../stores/products';
+import ReviewsPage from "../../components/ReviewsPage";
+import { urlString } from '../../utils/api';
 
 export async function getStaticPaths() {
-  const products = await fetch('http://localhost:5000/api/products').then((res) => res.json());
+  const products = await fetch(`${urlString}/products`).then((res) => res.json());
 
   const paths = products.map((product) => ({
     params: { url: product.url },
     props: { 
+      _id: product._id,
       name: product.name,
       price: product.price,
+      desc: product.desc,
       oldPrice: product.oldPrice,
       image: product.image,
       smallDescs: product.smallDesc,
-      dropdowns: product.dropdowns
+      dropdowns: product.dropdowns,
+      reviews: product.reviews
     }
   }));
 
@@ -27,7 +31,7 @@ export async function getStaticPaths() {
 }
 
 const { url } = Astro.params;
-const { name, price, oldPrice, image, smallDescs, dropdowns } = Astro.props;
+const { _id, name, price, oldPrice, image, desc, smallDescs, dropdowns, reviews } = Astro.props;
 const title = name;
 ---
 
@@ -43,12 +47,20 @@ const title = name;
         <SmallDesc smallDescs={smallDescs} client:load />
         <div class="product-payment">
           <p class="currentlyviewing">
-            <CurrentlyViewingBanner client:only/>
+            <img
+              src="/svg/eye.svg"
+              width="14"
+              height="auto"
+              decoding="async"
+              loading="lazy"
+              alt="Eye icon"
+            />
+            <CurrentlyViewingBanner checkout={false} client:only/>
           </p>
           <div class="product-bundle">
             <Bundle price={price} oldPrice={oldPrice} client:load/>
             <p>Free shipping included</p>
-            <AddToCart client:load />
+            <AddToCart small={false} productId={_id} client:only />
           </div>
         </div>
         <div class="dropdowns">
@@ -58,6 +70,13 @@ const title = name;
     </div>
   </section>
   <section class="singlep-desc">
-    
+    <div set:html={desc}></div>
   </section>
+  <ReviewsPage url={url} reviews={reviews} client:load />
 </Layout>
+
+<script>
+	import { initVisit } from '../../stores/visit';
+	
+	initVisit();
+</script>

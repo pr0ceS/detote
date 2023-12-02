@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CurrentlyViewingBanner from '../components/CurrentlyViewingBanner';
+import CartContents from '../components/CartContents';
+import Checkout from '../components/Checkout';
+
+const title = "Cart"
+---
+
+<Layout title={title}>
+	<section class="cart">
+		<div class="cart-container">
+			<div class="cart-checkouts">
+				<span class="carticon carticon-active"></span>
+				<p><CurrentlyViewingBanner checkout={true} client:only/></p>
+			</div>
+			<div class="cart-main">
+				<div class="cart-contents">
+					<CartContents client:load/>
+				</div>
+				<div class="cart-checkout">
+					<Checkout client:load />
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	import { initVisit } from '../stores/visit';
+	
+	initVisit();
+</script>

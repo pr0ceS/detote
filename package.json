@@ -20,9 +20,11 @@
     "@types/react-dom": "^18.0.6",
     "astro": "^3.4.0",
     "js-cookie": "^3.0.5",
+    "moment": "^2.29.4",
     "nanostores": "^0.9.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-fade-in": "^2.0.1",
     "react-icons": "^4.11.0",
     "toastify-js": "^1.12.0"
   }

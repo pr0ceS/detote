@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useStore } from "@nanostores/react";
 
 const GetRandomTheme = ({ price, locale, oldPrice }) => {
   const [newPrice, setNewPrice] = useState(price);

@@ -1,16 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ProductList from "../../components/ProductList";
 
-const res = await fetch('http://ip-api.com/json/?fields=status,continent,continentCode,country,countryCode,region,regionName,timezone,query')
-
-const data = await res.json();
-console.log(data);
-if(!data) {
-	return Astro.redirect('/');
-}
-const title = "Products"
+const title = "All Products"
 ---
 
 <Layout title={title}>
-	<h1>Account Page</h1>
+	<ProductList salepage={false} client:load />
 </Layout>
+
+<script>
+	import { initVisit } from '../../stores/visit';
+	
+	initVisit();
+</script>

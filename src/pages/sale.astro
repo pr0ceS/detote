@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductList from "../components/ProductList";
+
+const title = "All Products"
+---
+
+<Layout title={title}>
+	<ProductList salepage={true} client:load />
+</Layout>
+
+<script>
+	import { initVisit } from '../stores/visit';
+	
+	initVisit();
+</script>

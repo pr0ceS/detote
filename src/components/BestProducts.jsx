@@ -3,6 +3,7 @@ import { initProducts, productsLoading, products } from "../stores/products"
 import { locale } from "../stores/locale"
 import { useStore } from "@nanostores/react"
 import GetRandomTheme from "./GetRandomTheme"
+import AddToCart from "./AddToCart"
 
 const BestProducts = () => {
 	const [hoverState, setHoverState] = useState({});
@@ -30,9 +31,12 @@ const BestProducts = () => {
 
 	return (
 		<div className="bestsellers-products">
-			{!$productsLoading ? $products && 
-				$products.products.map((product) => {
-					return (
+			{!$productsLoading ? (
+				$products &&
+				$products.products
+					.slice(0, 6) // Limit to the first 6 products
+					.map((product) => {
+						return (
 						<div key={product._id} className="product-card" >
 							<div className="product-image">
 								{/* Don't forget to update currency before sending product.price and product.oldPrice */}
@@ -74,11 +78,11 @@ const BestProducts = () => {
 										</b>
 									</p>
 								</div>
-								<button className="button">Add to cart</button>
+								<AddToCart small={true} productId={product._id} />
 							</div>
 						</div>
-					)
-				}) : (
+						)
+				})) : (
 					skeletons.map((skeleton, index) => (
 						<div key={index} className="product-card skeleton">
 							<div className="product-image skeleton-image">

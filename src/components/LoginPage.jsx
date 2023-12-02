@@ -2,6 +2,7 @@ import { useState } from "react"
 import Cookies from "js-cookie";
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import { urlString } from "../utils/api";
 
 const LoginPage = () => {
 	const [user, setUser] = useState({
@@ -14,7 +15,7 @@ const LoginPage = () => {
     try {
       e.preventDefault();
 
-			const res = await fetch('http://localhost:5000/api/login', {
+			const res = await fetch(`${urlString}/api/login`, {
 				method: "POST",
 				headers: {
 					'Content-Type': 'application/json',

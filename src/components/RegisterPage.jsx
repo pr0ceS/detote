@@ -1,6 +1,12 @@
 import { useState } from "react"
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
+import { urlString } from "../utils/api";
 
 const RegisterPage = () => {
+	
+	console.log(sessionStorage.getItem('order'))
+
 	const [user, setUser] = useState({
 		name: "",
     email: "",
@@ -13,7 +19,7 @@ const RegisterPage = () => {
       e.preventDefault();
 
 			if(user.confirmPassword === user.password) {
-				const res = await fetch('http://localhost:5000/api/register', {
+				const res = await fetch(`${urlString}/api/register`, {
 					method: "POST",
 					headers: {
 						'Content-Type': 'application/json',
@@ -34,7 +40,9 @@ const RegisterPage = () => {
 							background: "#22c55e",
 						}
 					}).showToast();
-					window.location.href = "/account"
+					setTimeout(() => {
+						window.location.href = "/account"
+					}, 500);
 				} else {
 					Toastify({
 						text: `${data.message}`,
@@ -65,6 +73,8 @@ const RegisterPage = () => {
 			}).showToast();
     }
   };
+
+	// Ask chatgpt to send a put request to orders/registered/:id get the userid from decodecookie and send it.
 
 	return (
 		<form className="form" onSubmit={(e) => handleSubmit(e)}>

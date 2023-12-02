@@ -15,7 +15,7 @@ export const products = atom(
 export async function initProducts() {
 	const data = await getProducts();
 
-	if (data) {
+	if (await data) {
 		products.set({
 			products: data,
 		});

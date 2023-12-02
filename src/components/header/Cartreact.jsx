@@ -7,7 +7,7 @@ const Cartreact = () => {
 
 	useEffect(() => {
 		initCart();
-	}, [])
+	}, [cart])
 	
 	return (
 		<div className={`carticon ${$cart && $cart.total > 0 && "carticon-active"}`}>

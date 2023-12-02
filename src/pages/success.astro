@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SuccessPaid from '../components/SuccessPaid';
+
+const title = "Successfully Paid"
+---
+
+<Layout title={title}>
+	<SuccessPaid client:only />
+</Layout>
+
+<script>
+	import { initVisit } from '../stores/visit';
+	import { getLatestOrder } from '../stores/order';
+
+	initVisit();
+
+	getLatestOrder();
+
+</script>
