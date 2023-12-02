@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
 import { urlString } from "../utils/api";
+import { DecodeCookie } from '../components/DecodeCookie';
 
 const RegisterPage = () => {
 	
@@ -75,6 +76,13 @@ const RegisterPage = () => {
   };
 
 	// Ask chatgpt to send a put request to orders/registered/:id get the userid from decodecookie and send it.
+
+	useEffect(() => {
+		// Create function and send put fetch to api server
+		const authToken = DecodeCookie();
+
+
+	}, [])
 
 	return (
 		<form className="form" onSubmit={(e) => handleSubmit(e)}>
