@@ -1,11 +1,11 @@
 import { useState } from "react"
+import Cookies from "js-cookie";
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
 import { urlString } from "../utils/api";
 
 const RegisterPage = () => {
 	
-	console.log(sessionStorage.getItem('order'))
 
 	const [user, setUser] = useState({
 		name: "",
@@ -14,12 +14,34 @@ const RegisterPage = () => {
     confirmPassword: "",
   });
 
+	const updateOrder = async (cartId, userId) => {
+		try {
+			const response = await fetch(`${urlString}/orders/registered/${cartId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ userId: userId }),
+			});
+
+			if (response.ok) {
+				const res = response.json();
+				console.log(res);
+				console.log('Order updated successfully');
+			} else {
+				console.error('Failed to update order');
+			}
+		} catch (error) {
+			console.error('Error updating order:', error);
+		}
+	};
+
 	const handleSubmit = async (e) => {
     try {
       e.preventDefault();
 
 			if(user.confirmPassword === user.password) {
-				const res = await fetch(`${urlString}/api/register`, {
+				const res = await fetch(`${urlString}/register`, {
 					method: "POST",
 					headers: {
 						'Content-Type': 'application/json',
@@ -29,6 +51,10 @@ const RegisterPage = () => {
 				
 				const data = await res.json();
 				if(data.success) {
+					const cartID = sessionStorage.getItem('order');
+					if(cartID) {
+						updateOrder(cartID, data.user)
+					}
 					Cookies.set('auth_token', data.cookie, {SameSite: "Lax"});
 					Toastify({
 						text: `Account created, redirecting`,
@@ -40,9 +66,9 @@ const RegisterPage = () => {
 							background: "#22c55e",
 						}
 					}).showToast();
-					setTimeout(() => {
-						window.location.href = "/account"
-					}, 500);
+					// setTimeout(() => {
+					// 	window.location.href = "/account"
+					// }, 500);
 				} else {
 					Toastify({
 						text: `${data.message}`,
@@ -75,7 +101,7 @@ const RegisterPage = () => {
   };
 
 	// Ask chatgpt to send a put request to orders/registered/:id get the userid from decodecookie and send it.
-
+	
 	return (
 		<form className="form" onSubmit={(e) => handleSubmit(e)}>
 			<div className="form-container">

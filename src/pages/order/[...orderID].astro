@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { urlString } from '../../utils/api';
+import { DecodeCookie } from '../../components/DecodeCookie';
+
+export async function getStaticPaths() {
+	const decodedJwt = await DecodeCookie(); // Use await to wait for the decoded cookie
+  if (!decodedJwt) {
+    throw new Error('No valid JWT cookie found'); // Handle missing or invalid cookie
+  }
+
+  const orders = await fetch(`${urlString}/orders/find/${decodedJwt._id}`).then((res) => res.json());
+
+	const paths = orders.map((order) => ({
+		params: { orderID: order._id },
+		props: { 
+			total: order.total,
+		}
+	}));
+
+	return paths;
+
+}
+
+const { orderID } = Astro.params;
+const { total } = Astro.props;
+const title = "Your order";
+---
+
+<Layout title={title}>
+	<p>Order</p>
+</Layout>
+
+<script>
+	import { initVisit } from '../../stores/visit';
+	
+	initVisit();
+</script>
