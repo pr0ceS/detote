@@ -6,7 +6,7 @@ const SuccessPaid = () => {
 	const $order = useStore(order);
 
 	if($order && $order.order) {
-		sessionStorage.setItem("order", $order.order[0]._id);
+		sessionStorage.setItem("order", $order?.order[0]?._id);
 	}
 
   return (
