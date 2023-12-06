@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = "Shipping policy"
+---
+
+<Layout title={title}>
+	<section class="contact-us">
+		<div class="contact-us-container">
+			<div>
+				<h1>Shipping Policy</h1>
+			</div>
+			<div>
+				<h2>Free International Shipping</h2>
+				<p>We are pleased to offer free international shipping to our valued customers. Regardless of your location, enjoy the convenience of having your orders delivered to you without any additional shipping charges.</p>
+			</div>
+			<div>
+				<h2>Order Updates via Email</h2>
+				<p>To keep you informed about the status of your order, we provide accurate and timely email updates. You'll receive notifications regarding order confirmation, processing, and shipping. Stay in the loop with the latest information about your purchase.</p>
+			</div>
+			<div>
+				<h2>Shipping Methods by Country</h2>
+				<p>Shipping methods may vary depending on the country from which you place your order. We tailor our shipping services to ensure reliable and efficient delivery, taking into account the unique shipping requirements of each destination.</p>
+			</div>
+			<div>
+				<h2>Quick Processing Time</h2>
+				<p>Our dedicated team works swiftly to process your orders. Expect your order to be processed within approximately 1 day from the time of purchase. We aim to get your items ready for shipping promptly</p>
+			</div>
+			<div>
+				<h2>Complimentary Shipping</h2>
+				<p>We believe in transparent pricing, and that's why we offer completely free shipping on all orders. Enjoy the convenience of shopping without worrying about additional shipping fees.</p>
+			</div>
+			<div>
+				<h2>Shipping Times</h2>
+				<p>Specific shipping times for each product are noted on the respective product pages. Please refer to the product details to find accurate estimates for delivery times. We strive to provide you with clear expectations for when your items will arrive.</p>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	import { initVisit } from '../../stores/visit';
+
+	initVisit();
+</script>
