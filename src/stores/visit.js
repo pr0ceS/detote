@@ -38,7 +38,7 @@ export async function initVisit() {
 
 	const data = {
 		fingerprint: await fingerprint.toString(),
-		ip: await localeData.query,
+		ip: await localeData.ipAddress,
     visitRef: newVisitRef,
 		origin,
 		country,
