@@ -1,1 +1,1 @@
-export const urlString = "https://airwalletpro-backend.onrender.com"
+export const urlString = "https://airwalletpro-backend.onrender.com/api"
