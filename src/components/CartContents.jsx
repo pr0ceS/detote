@@ -125,7 +125,20 @@ const CartContents = () => {
 								/>
 							</a>
 							<div className="cart-product-text">
-								<span className="saving">{Math.ceil((((productInfo.oldPrice * quantity) - (quantity === 2 ? (productInfo.price * 0.9 * quantity) : quantity >= 3 ? (productInfo.price * 0.85 * quantity) : (productInfo.price * quantity))) / (productInfo.oldPrice * quantity)) * (quantity >= 2 ? 100 : 10))}{quantity < 2 && "0"}% off </span>
+								{quantity === 1 ? (
+									<span className="saving">
+										You're saving <Price price={productInfo.oldPrice - productInfo.price}/>
+									</span>
+								) : quantity === 2 ? (
+									<span className="saving">
+										10% off
+									</span>
+								) : (
+									<span className="saving">
+										15% off
+									</span>
+								)
+								}
 								<div className="prices">
 									<p>was <b><Price oldPrice={(productInfo.oldPrice * quantity)} /></b></p>
 									<p><Price price={applyDiscount(productInfo.price, quantity)} /></p>

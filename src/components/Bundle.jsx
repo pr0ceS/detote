@@ -96,7 +96,7 @@ const Bundle = ({ price, oldPrice }) => {
 				<div className="bundle-text">
 					<div>
 						<p className="pack">2 Pack</p>
-						<span className="percentageoff">{((newOldPrice * 2 - newPrice * 2 * 0.90) / (newOldPrice * 2) * 100).toFixed(0)}% off</span>
+						<span className="percentageoff">10% off</span>
 						<h1>{currency}{(newPrice * 2 * 0.90 ).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
 					</div>
 					<div className="savings">
@@ -114,7 +114,7 @@ const Bundle = ({ price, oldPrice }) => {
 				<div className="bundle-text">
 					<div>
 						<p className="pack">3 Pack</p>
-						<span className="percentageoff">{((newOldPrice * 3 - newPrice * 3 * 0.85) / (newOldPrice * 3) * 100).toFixed(0)}% off</span>
+						<span className="percentageoff">15% off</span>
 						<h1>{currency}{(newPrice * 3 * 0.85).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
 					</div>
 					<div className="savings">
