@@ -82,7 +82,6 @@ const InfoHeader = () => {
 
 	return (
 		<select
-			className={`fade-in ${localeSession && "show"}`}
 			id="currency"
 			value={session && sessionObject?.origin.toLocaleLowerCase()}
 			onChange={(e) => changeSelectWidth(e.target.value)}
