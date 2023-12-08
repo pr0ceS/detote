@@ -33,8 +33,8 @@ const ProductList = ({ salepage }) => {
 	return (
 		<>
 			{salepage && (
-				<div className="banner productlist-banner">
-					<img src="/svg/BF50.svg" alt="BF50" />
+				<div className="productlist-banner">
+					<img src="/svg/BF50.webp" alt="BF50" />
 				</div>
 			)}
 			{!salepage && (

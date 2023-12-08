@@ -66,9 +66,9 @@ const RegisterPage = () => {
 							background: "#22c55e",
 						}
 					}).showToast();
-					// setTimeout(() => {
-					// 	window.location.href = "/account"
-					// }, 500);
+					setTimeout(() => {
+						window.location.href = "/account"
+					}, 500);
 				} else {
 					Toastify({
 						text: `${data.message}`,
@@ -83,7 +83,16 @@ const RegisterPage = () => {
 				}
 
 			} else {
-				console.log("Passwords do not match")
+				Toastify({
+					text: `Passwords do not match`,
+					duration: 3000,
+					close: true,
+					gravity: "bottom",
+					position: "right",
+					style: {
+						background: "#dc2626",
+					}
+				}).showToast();
 			}
     } catch (error) {
       console.log(error);
