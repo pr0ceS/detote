@@ -19,6 +19,7 @@ export async function getStaticPaths() {
       name: product.name,
       price: product.price,
       desc: product.desc,
+      metaDesc: product.metaDesc,
       oldPrice: product.oldPrice,
       image: product.image,
       smallDescs: product.smallDesc,
@@ -31,11 +32,12 @@ export async function getStaticPaths() {
 }
 
 const { url } = Astro.params;
-const { _id, name, price, oldPrice, image, desc, smallDescs, dropdowns, reviews } = Astro.props;
+const { _id, name, price, oldPrice, image, desc, metaDesc, smallDescs, dropdowns, reviews } = Astro.props;
 const title = name;
+const description = metaDesc;
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
   <section class="singlep-main">
     <div class="singlep-main-container">
       <ProductImages images={image} client:load/>
