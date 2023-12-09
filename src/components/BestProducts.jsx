@@ -12,7 +12,7 @@ const BestProducts = () => {
 	const $productsLoading = useStore(productsLoading)
 
 	const skeletons = [
-		1,2,3,4,5,6
+		1,2,3,4,5,6,7,8
 	]
 
 	useEffect(() => {
@@ -34,7 +34,7 @@ const BestProducts = () => {
 			{!$productsLoading ? (
 				$products &&
 				$products.products
-					.slice(0, 6) // Limit to the first 6 products
+					.slice(0, 8) // Limit to the first 6 products
 					.map((product) => {
 						return (
 						<div key={product._id} className="product-card" >
