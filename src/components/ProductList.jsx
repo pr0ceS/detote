@@ -49,7 +49,6 @@ const ProductList = ({ salepage }) => {
 					{!$productsLoading ? (
 						$products &&
 						$products.products
-							.slice(0, 6) // Limit to the first 6 products
 							.map((product) => {
 								return (
 								<div key={product._id} className="product-card" >
