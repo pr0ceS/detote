@@ -1768,7 +1768,7 @@ input::placeholder {
 
   .singlep-main-image > img {
     object-fit: cover;
-    height: 450px;
+    height: 500px;
     width: 100%;
   }
 
