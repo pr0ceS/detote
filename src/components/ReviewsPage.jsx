@@ -132,55 +132,11 @@ const Star = ({ type }) => {
   );
 };
 
-const generateHypotheticalReviews = () => {
-  const totalReviews = 1173;
-  const fiveStarCount = Math.ceil((totalReviews * 80) / 100);
-  const fourStarCount = Math.ceil((totalReviews * 12) / 100);
-  const threeStarCount = Math.ceil((totalReviews * 8) / 100);
-
-  const reviews = [];
-
-  for (let i = 0; i < fiveStarCount; i++) {
-    reviews.push({
-      stars: 5,
-      name: `Anonymous`,
-      title: 'Thank you!',
-      message: 'Great product',
-      date: moment().subtract(i, 'days').toISOString(),
-    });
-  }
-
-  for (let i = 0; i < fourStarCount; i++) {
-    reviews.push({
-      stars: 4,
-      name: `User${fiveStarCount + i + 1}`,
-      title: 'Good Product',
-      message: 'I need more than 12 card slots, furthermore good wallet',
-      date: moment().subtract(fiveStarCount + i, 'days').toISOString(),
-    });
-  }
-
-  for (let i = 0; i < threeStarCount; i++) {
-    reviews.push({
-      stars: 3,
-      name: `User${fiveStarCount + fourStarCount + i + 1}`,
-      title: 'Only 12 card slots',
-      message: 'I personally need more than 12 card slots. Therefore I give it 3 stars.',
-      date: moment().subtract(fiveStarCount + fourStarCount + i, 'days').toISOString(),
-    });
-  }
-
-  return reviews;
-};
-
-// Usage in ReviewsPage component
-const hypotheticalReviews = generateHypotheticalReviews();
-
 const ReviewsPage = ({ url, reviews }) => {
   const totalStars = 5;
-  
-  const [displayedReviews, setDisplayedReviews] = useState(hypotheticalReviews.slice(0, 5));
-  const [loadMoreVisible, setLoadMoreVisible] = useState(hypotheticalReviews.length > 5);
+
+  const [displayedReviews, setDisplayedReviews] = useState(reviews.slice(0, 5));
+  const [loadMoreVisible, setLoadMoreVisible] = useState(reviews.length > 5);
 
   const loadMoreReviews = useCallback(() => {
     const remainingReviews = reviews.slice(displayedReviews.length, displayedReviews.length + 5);
