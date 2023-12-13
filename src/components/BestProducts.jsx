@@ -4,6 +4,7 @@ import { locale } from "../stores/locale"
 import { useStore } from "@nanostores/react"
 import GetRandomTheme from "./GetRandomTheme"
 import AddToCart from "./AddToCart"
+import SmallReview from "./SmallReview"
 
 const BestProducts = () => {
 	const [hoverState, setHoverState] = useState({});
@@ -35,6 +36,7 @@ const BestProducts = () => {
 				$products &&
 				$products.products
 					.slice(0, 8) // Limit to the first 6 products
+					.filter(product => !product.free)
 					.map((product) => {
 						return (
 						<div key={product._id} className="product-card" >
@@ -57,6 +59,7 @@ const BestProducts = () => {
 							</div>
 							<div className="product-text">
 								<a href="/">{product.name}</a>
+								<SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} />
 								<div className="price">
 									<p>
 										{$locale.origin === "EU" && `€${product.price.toLocaleString('nl-nl',{minimumFractionDigits:2, maximumFractionDigits:2})}`}
@@ -78,7 +81,7 @@ const BestProducts = () => {
 										</b>
 									</p>
 								</div>
-								<AddToCart small={true} productId={product._id} />
+								<AddToCart models={product.models} small={true} productId={product._id} />
 							</div>
 						</div>
 						)

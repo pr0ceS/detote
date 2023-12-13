@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import CurrentlyViewingBanner from '../components/CurrentlyViewingBanner';
 import CartContents from '../components/CartContents';
 import Checkout from '../components/Checkout';
+import Gift from '../components/Gift';
 
 const title = "Cart"
 const description = "Streamline your shopping experience at AirWalletPro. Easily manage and review your selections in the cart. Secure checkout awaits."
@@ -19,8 +20,13 @@ const description = "Streamline your shopping experience at AirWalletPro. Easily
 				<div class="cart-contents">
 					<CartContents client:only/>
 				</div>
-				<div class="cart-checkout">
-					<Checkout client:only />
+				<div class="cart-checkout-wrapper">
+					<div class="cart-checkout">
+						<Checkout client:only />
+					</div>
+					<div class="cart-gift">
+						<Gift client:only />
+					</div>
 				</div>
 			</div>
 		</div>

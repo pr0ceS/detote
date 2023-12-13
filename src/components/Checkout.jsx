@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "@nanostores/react"
 import { cart } from "../stores/cart"
 import { locale } from "../stores/locale";
@@ -25,11 +25,21 @@ const Checkout = () => {
 	const totalQuantity = $cart.products.reduce(
 		(accumulator, product) => accumulator + product.quantity,
 		0
+	); 
+
+	const totalQuantityNoGift = $cart.products.reduce(
+		(accumulator, product) => {
+			if (!product.productInfo || !product.productInfo.free) {
+				return accumulator + product.quantity;
+			}
+			return accumulator;
+		},
+		0
 	);
 
 	const totalSavings = $cart.products.reduce(
 		(accumulator, { productInfo, quantity }) => {
-			const discountedPrice = applyDiscount(productInfo.price, quantity);
+			const discountedPrice = applyDiscount(productInfo.price, totalQuantityNoGift);
 			const savingsPerProduct = (productInfo.oldPrice - discountedPrice) * quantity;
 			return accumulator + savingsPerProduct;
 		},
@@ -252,7 +262,7 @@ const Checkout = () => {
 }
 
 const applyDiscount = (price, quantity) => {
-  return quantity === 2 ? price * 0.9 : quantity >= 3 ? price * 0.85 : price;
+  return quantity >= 3 ? price * 0.85 : price;
 };
 
 export default Checkout

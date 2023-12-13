@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { locale } from "../stores/locale";
 import { selectedOption } from "../stores/selectedOption";
-import FadeIn from 'react-fade-in';
+import { model } from "../stores/models";
 
 
-const Bundle = ({ price, oldPrice }) => {
+const Bundle = ({ price, oldPrice, models }) => {
 	const $selectedOption = useStore(selectedOption)
+	const $model = useStore(model);
 	const $locale = useStore(locale)
 	const [currency, setCurrency] = useState()
 	const [localeData, setLocaleData] = useState()
@@ -44,10 +45,32 @@ const Bundle = ({ price, oldPrice }) => {
 	}, [$locale])
 
 	useEffect(() => {
-		selectedOption.set({
-			option: 2
-		})
+		if(models.length === 0) {
+			selectedOption.set({
+				option: 2
+			})
+		} else {
+			selectedOption.set({
+				option: 1
+			})
+		}
 	}, [])
+
+	useEffect(() => {
+		if(models.length > 0) {
+			model.set({
+				option: 0,
+				name: models[0]
+			})
+		}
+	}, [])
+
+	const handleModelChange = (optionIndex, modelName) => {
+		model.set({
+			option: optionIndex,
+			model: modelName,
+		})
+	}
 
 	const handleBundleChange = (option) => {
 		if(option === "option1") {
@@ -68,7 +91,7 @@ const Bundle = ({ price, oldPrice }) => {
 		}
 	}
 
-	return newOldPrice && newPrice ? (
+	return models.length === 0 && newOldPrice && newPrice ? (
 		<div className="bundles">
 			<div onClick={() => handleBundleChange('option1')} className={`bundle ${selectedBundle === "option1" && "option-selected"}`}>
 				<div className="circle">
@@ -96,11 +119,11 @@ const Bundle = ({ price, oldPrice }) => {
 				<div className="bundle-text">
 					<div>
 						<p className="pack">2 Pack</p>
-						<span className="percentageoff">10% off</span>
-						<h1>{currency}{(newPrice * 2 * 0.90 ).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
+						<span className="percentageoff">Free Gift</span>
+						<h1>{currency}{(newPrice * 2).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
 					</div>
 					<div className="savings">
-						<p className="save">You save {currency}{(newOldPrice * 2 - newPrice * 2 * 0.90).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
+						<p className="save">You save {currency}{(newOldPrice * 2 - newPrice * 2).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
 						<p className="was">was <b>{currency}{(newOldPrice * 2).toFixed(0)}</b></p>
 					</div>
 				</div>
@@ -114,7 +137,7 @@ const Bundle = ({ price, oldPrice }) => {
 				<div className="bundle-text">
 					<div>
 						<p className="pack">3 Pack</p>
-						<span className="percentageoff">15% off</span>
+						<span className="percentageoff">Free Gift + 15% off</span>
 						<h1>{currency}{(newPrice * 3 * 0.85).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
 					</div>
 					<div className="savings">
@@ -122,6 +145,18 @@ const Bundle = ({ price, oldPrice }) => {
 						<p className="was">was <b>{currency}{(newOldPrice * 3).toFixed(0)}</b></p>
 					</div>
 				</div>
+			</div>
+		</div>
+	) : models.length > 0 ? (
+		<div className="models">
+			<h1>{currency}{price.toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
+			<div className="savings">
+				<p className="was">was <b>{currency}{oldPrice.toFixed(0)}</b></p>
+			</div>
+			<div className="models-container">
+				{models.map((model, index) => (
+					<p onClick={() => handleModelChange(index, model)} className={`model ${index === $model.option && "model-selected"}`} key={index}>{model}</p>
+				))}
 			</div>
 		</div>
 	) : (

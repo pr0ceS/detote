@@ -5,6 +5,7 @@ import GetRandomTheme from "./GetRandomTheme";
 import Price from "./Price";
 import { locale } from "../stores/locale";
 import AddToCart from "./AddToCart";
+import SmallReview from "./SmallReview";
 
 const ProductList = ({ salepage }) => {
 	const [hoverState, setHoverState] = useState({});
@@ -49,6 +50,7 @@ const ProductList = ({ salepage }) => {
 					{!$productsLoading ? (
 						$products &&
 						$products.products
+							.filter(product => !product.free)
 							.map((product) => {
 								return (
 								<div key={product._id} className="product-card" >
@@ -71,6 +73,7 @@ const ProductList = ({ salepage }) => {
 									</div>
 									<div className="product-text">
 										<a href="/">{product.name}</a>
+										<SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} />
 										<div className="price">
 											<Price price={product.price} />
 										</div>
@@ -78,7 +81,7 @@ const ProductList = ({ salepage }) => {
 											was{' '}
 											<Price price={product.oldPrice} />
 										</div>
-										<AddToCart small={true} productId={product._id} />
+										<AddToCart models={product.models} small={true} productId={product._id} />
 									</div>
 								</div>
 								)
