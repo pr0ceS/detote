@@ -1,64 +1,54 @@
 import { useState } from "react";
 import { useStore } from "@nanostores/react";
-import { getCurrentBrowserFingerPrint } from "@rajesh896/broprint.js";
 import { selectedOption } from "../stores/selectedOption";
-import { addToCart } from "../utils/cartApi";
 import { trackAddToCart } from "../stores/visit";
 import { model } from "../stores/models";
+import { cart } from "../stores/cart";
 
 
-const AddToCart = ({ productId, small, models }) => {
+const AddToCart = (product) => {
 	const $selectedOption = useStore(selectedOption);
+	const $cart = useStore(cart)
 	const $model = useStore(model);
 	const [added, setAdded] = useState(false);
 	const [buttonText, setButtonText] = useState("Add to cart");
 
 	const handleClick = async () => {
 		setButtonText("Adding...")
-		const fingerprintID = await getCurrentBrowserFingerPrint();
-		if(models.length > 0) {
+
+		if(product.product.models.length > 0) {
 			const newCart = {
-				fingerprint: fingerprintID,
-				products: [
-					{
-						productId: productId,
-						quantity: $selectedOption.option,
-					},
-				],
-				modelName: $model.model ? $model.model : models[0] ? models[0] : ""
+				product: product.product,
+				quantity: $selectedOption.option,
+				model: $model.model ? $model.model : product.product.models[0] ? product.product.models[0] : ""
 			}
 			if(newCart) {
 				try {
-					await addToCart(newCart)
+					cart.set([...$cart, newCart])
 					await trackAddToCart()
 					setAdded(true)
 					setButtonText("Added")
 					setTimeout(() => {
 						window.location.href = '/cart'
-					}, 500);
+					}, 250);
 				} catch (error) {
 					console.log(error);
 				}
 			}
 		} else {
 			const newCart = {
-				fingerprint: fingerprintID,
-				products: [
-					{
-						productId: productId,
-						quantity: $selectedOption.option,
-					},
-				]
+				product: product.product,
+				quantity: $selectedOption.option,
 			}
 			if(newCart) {
 				try {
-					await addToCart(newCart)
+					cart.set([...$cart, newCart])
 					await trackAddToCart()
 					setAdded(true)
 					setButtonText("Added")
 					setTimeout(() => {
 						window.location.href = '/cart'
-					}, 500);
+					}, 250);
 				} catch (error) {
 					console.log(error);
 				}
@@ -73,7 +63,7 @@ const AddToCart = ({ productId, small, models }) => {
 	}
 
 	return (
-		<button onClick={() => handleClick()} className={`button addtocart ${added && "added"} ${small && "smalladdtocart"}`}>{buttonText}</button>
+		<button onClick={() => handleClick()} className={`button addtocart ${added && "added"} ${product.small && "smalladdtocart"}`}>{buttonText}</button>
 	)
 }
 

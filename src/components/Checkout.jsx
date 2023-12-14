@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useStore } from "@nanostores/react"
 import { cart } from "../stores/cart"
 import { locale } from "../stores/locale";
@@ -18,18 +18,23 @@ const Checkout = () => {
 
 	const [isChecked, setIsChecked] = useState(true);
 
+	const totalPrice = $cart.reduce((accumulator, { product, quantity }) => {
+		const productTotal = product.price * quantity;
+		return accumulator + productTotal;
+	}, 0);
+
   const handleToggle = () => {
     setIsChecked(!isChecked);
   };
 
-	const totalQuantity = $cart.products.reduce(
+	const totalQuantity = $cart.reduce(
 		(accumulator, product) => accumulator + product.quantity,
 		0
 	); 
 
-	const totalQuantityNoGift = $cart.products.reduce(
+	const totalQuantityNoGift = $cart.reduce(
 		(accumulator, product) => {
-			if (!product.productInfo || !product.productInfo.free) {
+			if (!product.product || !product.product.free) {
 				return accumulator + product.quantity;
 			}
 			return accumulator;
@@ -37,15 +42,18 @@ const Checkout = () => {
 		0
 	);
 
-	const totalSavings = $cart.products.reduce(
-		(accumulator, { productInfo, quantity }) => {
-			const discountedPrice = applyDiscount(productInfo.price, totalQuantityNoGift);
-			const savingsPerProduct = (productInfo.oldPrice - discountedPrice) * quantity;
+	const totalSavings = $cart.reduce(
+		(accumulator, { product, quantity }) => {
+			const discountedPrice = applyDiscount(product.price, totalQuantityNoGift);
+			const savingsPerProduct = (product.oldPrice - discountedPrice) * quantity;
 			return accumulator + savingsPerProduct;
 		},
 		0
 	);
 
+	const discountRate = 0.85; // 15% discount
+	const discountedTotalPrice = isChecked && totalQuantityNoGift >= 3 ? totalPrice * discountRate : totalPrice;
+		
 	function updateCurrency() {
     switch ($locale.origin) {
       case "EU":
@@ -91,13 +99,13 @@ const Checkout = () => {
 			.catch((err) => console.log(err.message));
 	};
 
-	return $cart.products.length > 0 ? (
+	return $cart.length > 0 ? (
 		<FadeIn transitionDuration={200}>
 			<div className="cart-checkout-container">
 				<div className="checkout-top">
 					<h1>Your Cart <b>({totalQuantity})</b></h1>
 					<div>
-						<p><Price price={$cart.total + (isChecked ? 2.99 : 0)} /></p>
+						<p><Price price={discountedTotalPrice + (isChecked ? 2.99 : 0)} /></p>
 						<span>You're saving <Price price={totalSavings + 10.45} /></span>
 					</div>
 				</div>

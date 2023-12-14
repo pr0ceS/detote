@@ -4,9 +4,6 @@ import { cart } from "../stores/cart";
 import FadeIn from "react-fade-in";
 import { initProducts, products } from "../stores/products";
 import Price from "./Price";
-import { getCurrentBrowserFingerPrint } from "@rajesh896/broprint.js";
-import { addToCart } from "../utils/cartApi";
-import { urlString } from "../utils/api";
 
 const Gift = () => {
   const $cart = useStore(cart);
@@ -47,22 +44,22 @@ const Gift = () => {
 		setGiftProducts(filteredGiftProducts);
 	
 		// Check if any product in $cart.products.productInfo has free: true
-		const isGiftClaimed = $cart.products.some(
-			(product) => product.productInfo && product.productInfo.free === true
+		const isGiftClaimed = $cart.some(
+			(product) => product.product && product.product.free === true
 		);
 	
 		// Update state based on whether a gift is claimed
 		setCheckIfGiftIsClaimed(isGiftClaimed);
-	}, [$products.products, $cart.products]);
+	}, [$products.products, $cart]);
 
-  const totalQuantity = $cart.products.reduce(
+  const totalQuantity = $cart.reduce(
     (accumulator, product) => accumulator + product.quantity,
     0
   );
 
-	const totalQuantityNoGift = $cart.products.reduce(
+	const totalQuantityNoGift = $cart.reduce(
 		(accumulator, product) => {
-			if (!product.productInfo || !product.productInfo.free) {
+			if (!product.product || !product.product.free) {
 				return accumulator + product.quantity;
 			}
 			return accumulator;
@@ -71,7 +68,7 @@ const Gift = () => {
 	);
 
 	const handleGiftClick = (gift) => {
-		const newSelectedGift = { ...selectedGift, ["productId"]: gift._id, ["productInfo"]: gift};
+		const newSelectedGift = { ...selectedGift, ["product"]: gift};
 		setSelectedGift(newSelectedGift);
 		setOpenModal(false)
 		setOpenModelModal(true)
@@ -79,73 +76,34 @@ const Gift = () => {
   };
 
 	const handleModelSelection = async (model) => {
-		const fingerprintID = await getCurrentBrowserFingerPrint();
-    // Assuming the gift object structure has a 'models' array
-
 		const newCart = {
-			fingerprint: fingerprintID,
-			products: [
-				{
-					productId: selectedGift.productId,
-					quantity: 1,
-				},
-			],
-			modelName: model,
+			product: selectedGift.product,
+			quantity: 1,
+			model: model,
 		}
 		if(newCart) {
 			try {
-				await addToCart(newCart)
-				setTimeout(() => {
-					window.location.reload()
-				}, 500);
+				cart.set([...$cart, newCart])
+				document.body.style.overflow = 'auto';
 			} catch (error) {
 				console.log(error);
 			}
 		}
 		
     // Close the modal
-    // setOpenModal(false);.
+    setOpenModal(false);
+    setOpenModelModal(false);
   };
 
 	useEffect(() => {
-		const handlePut = async (newCart) => {
-
-			const fingerprint = await getCurrentBrowserFingerPrint();
-
-			const response = await fetch(`${urlString}/cart/`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					fingerprint: fingerprint,
-					products: newCart.products.map(({ productId, quantity, model }) => ({
-						productId,
-						quantity,
-						model
-					})),
-				}),
-			});
-		
-			if (response.ok) {
-				const data = await response.json();
-				const updatedTotal = data.total;
-		
-				cart.set({ ...$cart, products: newCart.products, total: updatedTotal });
-			}
-		} 
+		if(totalQuantityNoGift === 1) {
+			const filteredCart = $cart.filter(
+				(product) => product.product.free === false
+			);
 	
-		if (checkIfGiftIsClaimed && totalQuantityNoGift === 1 || checkIfGiftIsClaimed && totalQuantity === 1) {
-			const newCart = {
-				...$cart,
-				products: $cart.products.filter(product => !product.productInfo || !product.productInfo.free)
-			};
-	
-			// Now, newCart contains only products that do not have productInfo.free
-			handlePut(newCart);
+			cart.set(filteredCart);
 		}
-
-	}, [$cart.products]);
+	}, [totalQuantity])
 
   return !checkIfGiftIsClaimed && totalQuantity >= 2 && (
 		<>

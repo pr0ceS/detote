@@ -27,7 +27,6 @@ const RegisterPage = () => {
 			if (response.ok) {
 				const res = response.json();
 				console.log(res);
-				console.log('Order updated successfully');
 			} else {
 				console.error('Failed to update order');
 			}

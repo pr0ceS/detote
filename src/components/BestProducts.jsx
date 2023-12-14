@@ -81,7 +81,7 @@ const BestProducts = () => {
 										</b>
 									</p>
 								</div>
-								<AddToCart models={product.models} small={true} productId={product._id} />
+								<AddToCart product={product} small={true} />
 							</div>
 						</div>
 						)

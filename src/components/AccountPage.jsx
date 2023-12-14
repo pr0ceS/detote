@@ -33,7 +33,6 @@ const AccountPage = () => {
 	
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
 				setUserOrders(data);
 			} else {
 				console.error('Failed to update order');
@@ -51,7 +50,6 @@ const AccountPage = () => {
 				if(authToken) {
 					const decodedJwt = await DecodeCookie()
 					getUserOrders(decodedJwt._id);
-					console.log(decodedJwt._id);
 					setUserData(decodedJwt);
 				} else {
 					window.location.href = "/account/login"
