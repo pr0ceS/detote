@@ -16,6 +16,7 @@ const Checkout = () => {
 	const $locale = useStore(locale);
 	const user = DecodeCookie();
 
+	const [isLoading, setIsLoading] = useState(false);
 	const [isChecked, setIsChecked] = useState(true);
 
 	const totalPrice = $cart.reduce((accumulator, { product, quantity }) => {
@@ -72,6 +73,7 @@ const Checkout = () => {
   }
 
 	const handleCheckout = async () => {
+		setIsLoading(true);
 		const fingerprint = await getCurrentBrowserFingerPrint();
 		const currency = await updateCurrency();
 		const visitRef = await sessionStorage.getItem('visitRef')
@@ -113,7 +115,7 @@ const Checkout = () => {
 					<p><b>Save <Price price={10.45} /> on shipping</b> if you place an order within <b><CountdownTimer /></b></p>
 				</div>
 				<div onClick={() => handleCheckout()} className="checkout">
-					<button className="button addtocart">Checkout</button>
+					<button className="button addtocart">{isLoading ? <FadeIn transitionDuration={200} className={`loadingio-spinner-rolling-2u7ujo2cx9d show-loading`}><div className="ldio-tjldnv9majp"><div></div></div></FadeIn> : "Checkout"}</button>
 					<div className="payments">
 						<img
 							src={"/svg/Visa.svg"}
