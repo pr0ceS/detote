@@ -874,7 +874,7 @@ footer {
 .footer-container form button {
   position: absolute;
   height: 36px;
-  background: var(--primary);
+  background: var(--secondary);
   color: white;
   font-family: "Poppins", sans-serif;
   border: none;
@@ -948,7 +948,7 @@ footer {
   font-size: 12px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1258px) {
   .footer-container {
     width: 100%;
   }

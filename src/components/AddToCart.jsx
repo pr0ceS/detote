@@ -14,53 +14,54 @@ const AddToCart = (product) => {
 	const [buttonText, setButtonText] = useState("Add to cart");
 
 	const handleClick = async () => {
-		setButtonText("Adding...")
-
-		if(product.product.models.length > 0) {
-			const newCart = {
-				product: product.product,
-				quantity: $selectedOption.option,
-				model: $model.model ? $model.model : product.product.models[0] ? product.product.models[0] : ""
-			}
-			if(newCart) {
-				try {
-					cart.set([...$cart, newCart])
-					await trackAddToCart()
-					setAdded(true)
-					setButtonText("Added")
-					setTimeout(() => {
-						window.location.href = '/cart'
-					}, 250);
-				} catch (error) {
-					console.log(error);
-				}
-			}
+		setButtonText("Adding...");
+	
+		const selectedModel = $model.model ? $model.model : (product.product.models && product.product.models[0]) || "";
+	
+		const existingProduct = $cart.find(
+			(cartProduct) =>
+				cartProduct.product.name === product.product.name && cartProduct.model === selectedModel
+		);
+	
+		if (existingProduct) {
+			// Product with the same name and model already exists, update quantity
+			const updatedCart = $cart.map((cartProduct) =>
+				cartProduct.product.name === product.product.name && cartProduct.model === selectedModel
+					? { ...cartProduct, quantity: cartProduct.quantity + $selectedOption.option }
+					: cartProduct
+			);
+	
+			cart.set(updatedCart);
 		} else {
+			// Product doesn't exist, add it to the cart
 			const newCart = {
 				product: product.product,
 				quantity: $selectedOption.option,
-			}
-			if(newCart) {
-				try {
-					cart.set([...$cart, newCart])
-					await trackAddToCart()
-					setAdded(true)
-					setButtonText("Added")
-					setTimeout(() => {
-						window.location.href = '/cart'
-					}, 250);
-				} catch (error) {
-					console.log(error);
-				}
-			}
+				model: selectedModel,
+			};
+	
+			cart.set([...$cart, newCart]);
 		}
+	
+		try {
+			await trackAddToCart();
+			setAdded(true);
+			setButtonText("Added");
+			setTimeout(() => {
+				window.location.href = "/cart";
+			}, 250);
+		} catch (error) {
+			console.log(error);
+		}
+	
 		const timer2 = setTimeout(() => {
 			setAdded(false);
-			setButtonText("Add to cart")	
+			setButtonText("Add to cart");
 		}, 3000);
-
-    return () => clearTimeout(timer, timer2);
-	}
+	
+		return () => clearTimeout(timer2);
+	};
+	
 
 	return (
 		<button onClick={() => handleClick()} className={`button addtocart ${added && "added"} ${product.small && "smalladdtocart"}`}>{buttonText}</button>

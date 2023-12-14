@@ -25,7 +25,8 @@ export async function getStaticPaths() {
       smallDescs: product.smallDesc,
       dropdowns: product.dropdowns,
       reviews: product.reviews,
-      models: product.models
+      models: product.models,
+      product: product
     }
   }));
 
@@ -33,7 +34,7 @@ export async function getStaticPaths() {
 }
 
 const { url } = Astro.params;
-const { _id, name, price, oldPrice, image, desc, metaDesc, smallDescs, dropdowns, reviews, models } = Astro.props;
+const { product, _id, name, price, oldPrice, image, desc, metaDesc, smallDescs, dropdowns, reviews, models } = Astro.props;
 const title = name;
 const description = metaDesc;
 ---
@@ -63,7 +64,7 @@ const description = metaDesc;
           <div class="product-bundle">
             <Bundle price={price} oldPrice={oldPrice} models={models} client:load/>
             <p>Free shipping included</p>
-            <AddToCart models={models} small={false} productId={_id} client:only />
+            <AddToCart product={product} small={false} client:only />
           </div>
         </div>
         <div class="dropdowns">
