@@ -3,9 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import ProductList from "../../components/ProductList";
 
 const title = "All Products"
+const description = "Explore our diverse range of quality products at AirWalletPro. From Carbon Fiber to Soft Premium Leather, find what suits you best. Shop now and enjoy free shipping."
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
 	<ProductList salepage={false} client:load />
 </Layout>
 

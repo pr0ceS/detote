@@ -4,7 +4,7 @@ import { navigate } from "astro/transitions/router";
 
 export const getProducts = async () => {
 	try {
-		const res = await fetch(`${urlString}/products/`);
+		const res = await fetch(`${urlString}/products/withoutreviews`);
 		
 		const data = await res.json();
 		return data;

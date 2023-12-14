@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm';
+
+const title = "Contact us"
+const description = "Having problems of any sort? Don't hesitate to contact us."
+---
+
+<Layout title={title} description={description}>
+	<section class="contact-us">
+		<div class="contact-us-container">
+			<div class="1">
+				<h1>Contact us</h1>
+				<p>Feel free to reach out to us if you encounter any issues with your shipment, face challenges with your account, or discover defects in our products. We're here to assist you promptly and ensure your satisfaction.	</p>
+			</div>
+			<div class="2">
+				<h2>Contact Person:</h2>
+				<p>Martijn Bos</p>
+			</div>
+			<div class="3">
+				<h2>How to reach us:</h2>
+				<ul>
+					<li>Email: airwalletp@gmail.com</li>
+					<li>Contact form below</li>
+				</ul>
+			</div>
+			<div class="4">
+				<p>If you have questions about our return policy, please refer to our <a href="/info/return-policy">Return Policy</a> for detailed information. For inquiries regarding our shipping policy, you can find the relevant details in our <a href="/info/shipping-policy">Shipping Policy</a>.</p>
+			</div>
+			<div class="5">
+				<p>We value your feedback and are committed to providing you with the best possible experience.</p>
+			</div>
+			<div class="6">
+				<h2>Contact form:</h2>
+				<ContactForm client:load />
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	import { initVisit } from '../stores/visit';
+
+	initVisit();
+</script>

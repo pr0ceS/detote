@@ -1,7 +1,7 @@
 
 export const getLocale = async () => {
 	try {
-		const res = await fetch('http://ip-api.com/json/?fields=status,continent,continentCode,country,countryCode,region,regionName,timezone,query')
+		const res = await fetch('https://freeipapi.com/api/json')
 
 		const data = await res.json();
 		return data;

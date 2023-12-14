@@ -44,7 +44,6 @@ const GetRandomTheme = ({ price, locale, oldPrice }) => {
     ],
     [`${percentageOff}0% off`, "var(--sale-gray)", "black"],
     ["Limited Stock", "var(--sale-primary)", "black"],
-    ["Hot 🔥", "white", "black"],
   ]
 
   const [data, setData] = useState(themes[Math.floor(Math.random() * themes.length)]);

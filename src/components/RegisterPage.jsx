@@ -25,7 +25,6 @@ const RegisterPage = () => {
 			if (response.ok) {
 				const res = response.json();
 				console.log(res);
-				console.log('Order updated successfully');
 			} else {
 				console.error('Failed to update order');
 			}
@@ -81,7 +80,16 @@ const RegisterPage = () => {
 				}
 
 			} else {
-				console.log("Passwords do not match")
+				Toastify({
+					text: `Passwords do not match`,
+					duration: 3000,
+					close: true,
+					gravity: "bottom",
+					position: "right",
+					style: {
+						background: "#dc2626",
+					}
+				}).showToast();
 			}
     } catch (error) {
       console.log(error);

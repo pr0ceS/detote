@@ -5,6 +5,7 @@ import GetRandomTheme from "./GetRandomTheme";
 import Price from "./Price";
 import { locale } from "../stores/locale";
 import AddToCart from "./AddToCart";
+import SmallReview from "./SmallReview";
 
 const ProductList = ({ salepage }) => {
 	const [hoverState, setHoverState] = useState({});
@@ -33,8 +34,8 @@ const ProductList = ({ salepage }) => {
 	return (
 		<>
 			{salepage && (
-				<div className="banner productlist-banner">
-					<img src="/svg/BF50.svg" alt="BF50" />
+				<div className="productlist-banner">
+					<img src="/svg/BF50.webp" alt="BF50" />
 				</div>
 			)}
 			{!salepage && (
@@ -49,7 +50,7 @@ const ProductList = ({ salepage }) => {
 					{!$productsLoading ? (
 						$products &&
 						$products.products
-							.slice(0, 6) // Limit to the first 6 products
+							.filter(product => !product.free)
 							.map((product) => {
 								return (
 								<div key={product._id} className="product-card" >
@@ -72,6 +73,7 @@ const ProductList = ({ salepage }) => {
 									</div>
 									<div className="product-text">
 										<a href="/">{product.name}</a>
+										<SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} />
 										<div className="price">
 											<Price price={product.price} />
 										</div>
@@ -79,7 +81,7 @@ const ProductList = ({ salepage }) => {
 											was{' '}
 											<Price price={product.oldPrice} />
 										</div>
-										<AddToCart small={true} productId={product._id} />
+										<AddToCart models={product.models} small={true} productId={product._id} />
 									</div>
 								</div>
 								)
