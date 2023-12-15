@@ -1,11 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ProductImages from "../../components/ProductImages";
+import SmallDesc from "../../components/SmallDesc";
 import CurrentlyViewingBanner from "../../components/CurrentlyViewingBanner";
 import Bundle from "../../components/Bundle";
 import AddToCart from "../../components/AddToCart";
-import SmallDesc from "../../components/SmallDesc";
 import Dropdowns from "../../components/Dropdowns";
+import AddToCartPopup from '../../components/AddToCartPopup';
 import ReviewsPage from "../../components/ReviewsPage";
 import { urlString } from '../../utils/api';
 
@@ -72,6 +73,7 @@ const description = metaDesc;
       </section>
     </div>
   </section>
+  <AddToCartPopup product={product} client:only />
   <section class="singlep-desc">
     <div set:html={desc}></div>
   </section>

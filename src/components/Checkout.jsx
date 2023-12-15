@@ -43,6 +43,8 @@ const Checkout = () => {
 		0
 	);
 
+	
+
 	const totalSavings = $cart.reduce(
 		(accumulator, { product, quantity }) => {
 			const discountedPrice = applyDiscount(product.price, totalQuantityNoGift);
@@ -53,7 +55,7 @@ const Checkout = () => {
 	);
 
 	const discountRate = 0.85; // 15% discount
-	const discountedTotalPrice = isChecked && totalQuantityNoGift >= 3 ? totalPrice * discountRate : totalPrice;
+	const discountedTotalPrice = totalQuantityNoGift >= 3 ? totalPrice * discountRate : totalPrice;
 		
 	function updateCurrency() {
     switch ($locale.origin) {
@@ -107,8 +109,8 @@ const Checkout = () => {
 				<div className="checkout-top">
 					<h1>Your Cart <b>({totalQuantity})</b></h1>
 					<div>
-						<p><Price price={discountedTotalPrice + (isChecked ? 2.99 : 0)} /></p>
-						<span>You're saving <Price price={totalSavings + 10.45} /></span>
+						<p><Price price={(discountedTotalPrice + (isChecked ? 2.99 : 0))} /></p>
+						<span>You're saving <Price price={totalSavings + 10.45} />{totalQuantityNoGift >= 3 && " + 15% off"}</span>
 					</div>
 				</div>
 				<div className="save-shipping">

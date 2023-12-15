@@ -4,15 +4,6 @@ import { cart } from "../stores/cart";
 import Price from "./Price";
 import FadeIn from 'react-fade-in';
 
-const applyDiscount = (price, quantity) => {
-  // Apply discount based on quantity
-  if (quantity >= 3) {
-    return (price * quantity) * 0.85; // 15% discount for quantity 3 or more
-  } else {
-    return price * quantity; // No discount for other quantities
-  }
-};
-
 const CartContents = () => {
   const $cart = useStore(cart);
 	const [openStates, setOpenStates] = useState([]);
@@ -117,7 +108,7 @@ const CartContents = () => {
 								}
 								<div className="prices">
 									<p>was <b><Price oldPrice={(product.oldPrice * quantity)} /></b></p>
-									<p><Price price={applyDiscount(product.price, quantity)} /></p>
+									<p><Price price={(product.price * quantity)} /></p>
 								</div>
 								{product.price === 0 &&
 									<div className="increment-decrement disabled">

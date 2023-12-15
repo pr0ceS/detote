@@ -105,7 +105,7 @@ const Gift = () => {
 		}
 	}, [totalQuantity])
 
-  return !checkIfGiftIsClaimed && totalQuantity >= 2 && (
+  return !checkIfGiftIsClaimed && totalQuantity >= 2 ? (
 		<>
  			<FadeIn className="gift" >
 				<div className="gift-container" onClick={() => setOpenModal(true)}>
@@ -153,7 +153,11 @@ const Gift = () => {
 				</>
 			)}
 		</>
-  );
+  ) : totalQuantity === 1 && (
+		<FadeIn>
+			<p className="gift-p">Add 1 more item to your cart to claim your free gift! 🎁 (worth: <Price price={28.95} />)</p>
+		</FadeIn>
+	);
 };
 
 export default Gift;
