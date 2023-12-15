@@ -1,1 +1,1 @@
-export const urlString = "http://localhost:5000/api"
+export const urlString = "https://airwalletpro-backend.onrender.com/api"
