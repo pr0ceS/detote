@@ -58,7 +58,7 @@ const BestProducts = () => {
 								</a>
 							</div>
 							<div className="product-text">
-								<a href="/">{product.name}</a>
+								<a href={`/products/${product.url}`}>{product.name}</a>
 								<SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} />
 								<div className="price">
 									<p>
