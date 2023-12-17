@@ -13,7 +13,9 @@ import { urlString } from '../../utils/api';
 export async function getStaticPaths() {
   const products = await fetch(`${urlString}/products`).then((res) => res.json());
 
-  const paths = products.map((product) => ({
+  const filteredProducts = products.filter((product) => !product.free);
+
+  const paths = filteredProducts.map((product) => ({
     params: { url: product.url },
     props: { 
       _id: product._id,
