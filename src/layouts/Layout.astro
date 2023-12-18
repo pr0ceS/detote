@@ -56,6 +56,9 @@ const { title, description = defaultDesc } = Astro.props as Props;
 		<!-- End Meta Pixel Code -->
 	</head>
 	<body>
+		<script>
+			fbq('track', 'AddToCart');
+		</script>
 		<Header />
 		<main>
 			<slot />
