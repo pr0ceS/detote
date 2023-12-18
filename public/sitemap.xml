@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+   <!-- Home Page -->
+   <url>
+      <loc>https://www.airwalletpro.com/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+   </url>
+
+   <!-- Categories -->
+   <url>
+      <loc>https://www.airwalletpro.com/sale</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.airwalletpro.com/products</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <!-- Add more categories as needed -->
+
+   <!-- Products -->
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-slide-liquid-carbon</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-slide-caramel-brown-premium-leather</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-slide-saddle-brown-premium-leather</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-slide-night-black-premium-leather</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-slide-royal-blue-premium-leather</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-armored-aluminium-black</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-armored-carbon-fiber</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-armored-silver-aluminium</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-airpods-case-saddle-brown</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-airpods-case-walnut-brown</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-airpods-case-midnight-black</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://airwalletpro.com/products/airwalletprotm-airpods-case-deep-plum</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+
+   <!-- contact -->
+   <url>
+      <loc>https://www.airwalletpro.com/contact</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- cart -->
+   <url>
+      <loc>https://airwalletpro.com/cart</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <!-- Login -->
+   <url>
+      <loc>https://airwalletpro.com/account/login</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- shipping policy -->
+   <url>
+      <loc>https://airwalletpro.com/info/shipping-policy</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- return policy -->
+   <url>
+      <loc>https://airwalletpro.com/info/return-policy</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Add more pages such as FAQ, Privacy Policy, etc., as needed -->
+
+</urlset>
