@@ -2,9 +2,7 @@ import { useEffect, useState } from "react"
 import { initProducts, productsLoading, products } from "../stores/products"
 import { locale } from "../stores/locale"
 import { useStore } from "@nanostores/react"
-import GetRandomTheme from "./GetRandomTheme"
 import AddToCart from "./AddToCart"
-import SmallReview from "./SmallReview"
 
 const BestProducts = () => {
 	const [hoverState, setHoverState] = useState({});
@@ -41,9 +39,6 @@ const BestProducts = () => {
 						return (
 						<div key={product._id} className="product-card" >
 							<div className="product-image">
-								{/* Don't forget to update currency before sending product.price and product.oldPrice */}
-								<GetRandomTheme price={product.price} locale={$locale.origin} oldPrice={product.oldPrice} />
-
 								<a href={`/products/${product.url}`}>
 									<img
 										onMouseEnter={() => handleMouseEnter(product._id)}
@@ -59,7 +54,6 @@ const BestProducts = () => {
 							</div>
 							<div className="product-text">
 								<a href={`/products/${product.url}`}>{product.name}</a>
-								<SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} />
 								<div className="price">
 									<p>
 										{$locale.origin === "EU" && `€${product.price.toLocaleString('nl-nl',{minimumFractionDigits:2, maximumFractionDigits:2})}`}

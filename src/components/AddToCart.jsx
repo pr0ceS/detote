@@ -11,10 +11,10 @@ const AddToCart = (product) => {
 	const $cart = useStore(cart)
 	const $model = useStore(model);
 	const [added, setAdded] = useState(false);
-	const [buttonText, setButtonText] = useState("Add to cart");
+	const [buttonText, setButtonText] = useState("In winkelwagen");
 
 	const handleClick = async () => {
-		setButtonText("Adding...");
+		setButtonText("Toevoegen...");
 	
 		const selectedModel = $model.model ? $model.model : (product.product.models && product.product.models[0]) || "";
 	
@@ -46,9 +46,9 @@ const AddToCart = (product) => {
 		try {
 			await trackAddToCart();
 			setAdded(true);
-			setButtonText("Added");
+			setButtonText("Toegevoegd");
 			setTimeout(() => {
-				window.location.href = "/cart";
+				window.location.href = "/winkelwagen";
 			}, 250);
 		} catch (error) {
 			console.log(error);
@@ -56,7 +56,7 @@ const AddToCart = (product) => {
 	
 		const timer2 = setTimeout(() => {
 			setAdded(false);
-			setButtonText("Add to cart");
+			setButtonText("In winkelwagen");
 		}, 3000);
 	
 		return () => clearTimeout(timer2);

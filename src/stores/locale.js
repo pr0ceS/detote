@@ -5,7 +5,7 @@ import {
 
 export const locale = atom(
   {
-    origin: "US",
+    origin: "EU",
 		country: "No country"
   }
 )
