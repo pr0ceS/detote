@@ -21,7 +21,7 @@ const SuccessPaid = () => {
 						<p>We sturen je e-mailupdates over de verzending. Als je een account aanmaakt, wordt je bestelling opgeslagen en kun je deze op elk moment controleren. Zo niet, geen probleem! We sturen je nog steeds e-mails over de status van je bestelling.</p>
 						<div>
 							<a className="a-button" href="/contact">Contact</a>
-							<a className="a-button" href="/account/register">Een account aanmaken</a>
+							<a className="a-button" href="/account/registreren">Een account aanmaken</a>
 						</div>
 					</FadeIn>
         </div>
