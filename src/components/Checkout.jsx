@@ -43,8 +43,6 @@ const Checkout = () => {
 		0
 	);
 
-	
-
 	const totalSavings = $cart.reduce(
 		(accumulator, { product, quantity }) => {
 			const discountedPrice = applyDiscount(product.price, totalQuantityNoGift);
@@ -74,8 +72,30 @@ const Checkout = () => {
     }
   }
 
+	const generateUUID = () => {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			const r = (Math.random() * 16) | 0;
+			const v = c === 'x' ? r : (r & 0x3) | 0x8;
+			return v.toString(16);
+		});
+	};
+
 	const handleCheckout = async () => {
 		setIsLoading(true);
+		pintrk('track', 'custom', {
+			event_id: generateUUID(),
+			value: (discountedTotalPrice + (isChecked ? 2.99 : 0)),
+			order_quantity: 1,
+			currency: 'EUR',
+			line_items: $cart.map(cartItem => ({
+				product_category: "Beauty",
+				product_name: cartItem.product.name,
+				product_id: cartItem.product._id,
+				product_quantity: cartItem.quantity,
+				product_price: cartItem.product.price
+			}))
+		});
+
 		const fingerprint = await getCurrentBrowserFingerPrint();
 		const currency = await updateCurrency();
 		const visitRef = await sessionStorage.getItem('visitRef')

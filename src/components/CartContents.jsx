@@ -95,7 +95,7 @@ const CartContents = () => {
 									</span>
 								) : product.price > 0 && quantity === 2 ? (
 									<span className="saving">
-										Gratis Cadeau (was <Price price={28.95}/>)
+										U bespaart <Price price={(product.oldPrice - product.price) * 2}/> + Gratis Cadeau
 									</span>
 								) : product.price > 0 &&  (
 									<span className="saving">

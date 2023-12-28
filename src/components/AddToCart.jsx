@@ -13,9 +13,31 @@ const AddToCart = (product) => {
 	const [added, setAdded] = useState(false);
 	const [buttonText, setButtonText] = useState("In winkelwagen");
 
+	const generateUUID = () => {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			const r = (Math.random() * 16) | 0;
+			const v = c === 'x' ? r : (r & 0x3) | 0x8;
+			return v.toString(16);
+		});
+	};
+
 	const handleClick = async () => {
 		setButtonText("Toevoegen...");
-	
+
+		pintrk('track', 'addtocart', {
+			event_id: generateUUID(),
+			value: product.product.price * $selectedOption.option * ($selectedOption.option >= 3 ? 0.85 : 1),
+			order_quantity: 1,
+			currency: 'EUR',
+			line_items: [
+				{
+					product_name: product.product.name,
+					product_id: product.product._id,
+					product_quantity: $selectedOption.option,
+				}
+			]
+		});
+
 		const selectedModel = $model.model ? $model.model : (product.product.models && product.product.models[0]) || "";
 	
 		const existingProduct = $cart.find(
