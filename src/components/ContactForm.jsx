@@ -67,7 +67,7 @@ const ContactForm = () => {
   return (
     <form className='contact-us-form' onSubmit={handleSubmit}>
       <label>
-        Name:
+        Naam:
         <input
           type="text"
           name="name"
@@ -91,7 +91,7 @@ const ContactForm = () => {
       <br />
 
       <label>
-        Order Number (optional):
+        Bestelnummer (optioneel):
         <input
           type="text"
           name="orderNumber"
@@ -102,7 +102,7 @@ const ContactForm = () => {
       <br />
 
       <label>
-        Message:
+        Bericht:
         <textarea
           name="message"
           value={formData.message}
@@ -112,7 +112,7 @@ const ContactForm = () => {
       </label>
       <br />
 
-      <button className='button' type="submit">Submit</button>
+      <button className='button' type="submit">Indienen</button>
     </form>
   );
 };

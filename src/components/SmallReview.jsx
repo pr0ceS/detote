@@ -45,7 +45,7 @@ const Star = ({ type }) => {
       height="20"
       viewBox="0 0 24 24"
       fill={color}
-      className={`star ${type}`}
+      className={` star ${type}`}
     >
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M12 2L14.489 8.12L21 9.12L16 14.12L17.489 21L12 17.5L6.511 21L8 14.12L3 9.12L9.511 8.12L12 2z" />

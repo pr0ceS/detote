@@ -69,8 +69,8 @@ const LoginPage = () => {
 	return (
 		<form className="form form-login" onSubmit={(e) => handleSubmit(e)}>
 			<div className="form-container">
-				<h1>Account log in</h1>
-				<p>Don't have an account? <a href="/account/register">Sign up</a></p>
+				<h1>Inloggen op uw account</h1>
+				<p>Heeft u geen account? <a href="/account/registreren">Registreren</a></p>
 				<div>
 					<label htmlFor="email">Email:</label>
 					<input 
@@ -84,19 +84,19 @@ const LoginPage = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="password">Password:</label>
+					<label htmlFor="password">Wachtwoord:</label>
 					<input
 						type="password"
 						id="password"
 						name="password"
 						onChange={(e) => setUser({ ...user, password: e.target.value })}
 						value={user.password}
-						placeholder="Password"
+						placeholder="Wachtwoord"
 						required
 					/>
 				</div>
-				<a className="forgotpassword" href="/">Forgot password?</a>
-				<button className="button" type="submit" onClick={(e) => handleSubmit(e)} >Login</button>
+				<a className="forgotpassword" href="/contact">Wachtwoord vergeten?</a>
+				<button className="button" type="submit" onClick={(e) => handleSubmit(e)} >Inloggen</button>
 			</div>
 		</form>
 	)

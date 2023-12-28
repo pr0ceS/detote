@@ -73,12 +73,12 @@ const CartContents = () => {
 			<div className="cart-contents-container">
 				{$cart.map(({ product, quantity, model }, index) => (
 					<div key={index} className="cart-product">
-						<a href={`/products/${product.url}`}>{product.name}</a>
+						<a href={`/producten/${product.url}`}>{product.name}</a>
 						{model && (
 							<p>{model}</p>
 						)}
 						<div className="cart-product-info">
-							<a href={`/products/${product.url}`}>
+							<a href={`/producten/${product.url}`}>
 								<img
 									src={product.image[0]}
 									width="112"
@@ -91,20 +91,20 @@ const CartContents = () => {
 							<div className="cart-product-text">
 								{product.price > 0 && quantity === 1 ? (
 									<span className="saving">
-										You're saving <Price price={product.oldPrice - product.price}/>
+										U bespaart <Price price={product.oldPrice - product.price}/>
 									</span>
 								) : product.price > 0 && quantity === 2 ? (
 									<span className="saving">
-										Free Gift (was <Price price={28.95}/>)
+										Gratis Cadeau (was <Price price={28.95}/>)
 									</span>
 								) : product.price > 0 &&  (
 									<span className="saving">
-										15% off + Free Gift
+										Gratis Cadeau + 15% korting
 									</span>
 								)
 								}
 								{product.price === 0 && 
-									<span className="saving saving-free">Free Gift</span>
+									<span className="saving saving-free">Gratis Cadeau</span>
 								}
 								<div className="prices">
 									<p>was <b><Price oldPrice={(product.oldPrice * quantity)} /></b></p>
@@ -139,7 +139,7 @@ const CartContents = () => {
 						</div>
 						<div className="small-desc">
 							<div className="small-desc-title" onClick={() => handleToggle(index)}>
-								<p>See {openStates[index] ? 'less' : 'more'} product info {openStates[index] ? '-' : '+'}</p>
+								<p>Lees {openStates[index] ? 'minder' : 'meer'} product informatie {openStates[index] ? '-' : '+'}</p>
 							</div>
 							<div
 								className={`small-desc-content ${openStates[index] ? 'open' : ''}`}
@@ -162,7 +162,7 @@ const CartContents = () => {
 				<div className="cart-product">
 					<div className="small-desc">
 						<div className="small-desc-title normal">
-							<p>Looks like your cart is empty.</p>
+							<p>Het lijkt erop dat uw winkelwagentje leeg is.</p>
 						</div>
 					</div>
 				</div>

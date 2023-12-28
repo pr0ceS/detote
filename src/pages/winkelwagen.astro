@@ -5,16 +5,15 @@ import CartContents from '../components/CartContents';
 import Checkout from '../components/Checkout';
 import Gift from '../components/Gift';
 
-const title = "Cart"
-const description = "Streamline your shopping experience at AirWalletPro. Easily manage and review your selections in the cart. Secure checkout awaits."
+const title = "Winkelwagen"
+const description = "Winkelwagen"
 ---
 
 <Layout title={title} description={description}>
 	<section class="cart">
 		<div class="cart-container">
 			<div class="cart-checkouts">
-				<span class="carticon carticon-active"></span>
-				<p><CurrentlyViewingBanner checkout={true} client:only/></p>
+				<CurrentlyViewingBanner checkout={true} client:only/>
 			</div>
 			<div class="cart-main">
 				<div class="cart-contents">

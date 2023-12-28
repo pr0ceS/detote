@@ -1,13 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import RegisterPage from '../../components/RegisterPage';
+import LoginPage from "../../components/LoginPage";
 
-const title = "Register"
-const description = "Register an account to manage your orders, track deliveries and access your order history."
+const title = "Inloggen"
+const desciption = "Log in op uw account"
 ---
 
-<Layout title={title} description={description}>
-	<RegisterPage client:only />
+<Layout title={title} description={desciption}>
+	<LoginPage client:load/>
 </Layout>
 
 <script>

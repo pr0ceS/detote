@@ -109,11 +109,13 @@ const Gift = () => {
 		<>
  			<FadeIn className="gift" >
 				<div className="gift-container" onClick={() => setOpenModal(true)}>
-					<span>Worth <Price price={giftProducts.length > 0 ? giftProducts[0].oldPrice : 0} /></span>
+					<span>Waarde van <Price price={giftProducts.length > 0 ? giftProducts[0].oldPrice : 0} /></span>
 					<div className="gift-text">
-						<p>Click to claim your<br/>free gift!</p>
+						<p>Klik om je Gratis<br/>Cadeau te claimen!</p>
 					</div>
-					<img src={giftProducts.length > 0 ? giftProducts[0].image[0] : ""} width="150" decoding="async" loading="lazy" alt={giftProducts.length > 0 ? giftProducts[0].name : "Gift Image"}/>
+					{giftProducts.length > 0 && 
+						<img src={giftProducts.length > 0 ? giftProducts[0].image[0] : ""} width="150" decoding="async" loading="lazy" alt={giftProducts.length > 0 ? giftProducts[0].name : "Cadeau Foto"}/>
+					}
 				</div>
 			</FadeIn>
 			{openModal && (
@@ -121,8 +123,8 @@ const Gift = () => {
 					<div className="gift-background" onClick={() => setOpenModal(false)}></div>
 					<FadeIn className="gift-modal">
 						<div className="gift-modal-container">
-							<h1>Select a color: <b>({giftProducts.length})</b></h1>
-							<p>Note: Your gift will arrive separately in a different package, a few days later than the order itself.</p>
+							<h1>Selecteer een kleur: <b>({giftProducts.length})</b></h1>
+							<p>Let op: Je cadeau wordt apart bezorgd in een ander pakket en arriveert een paar dagen na je oorspronkelijke bestelling.</p>
 							<div className="gift-modal-content">
 								{giftProducts.map((gift) => (
 									<div key={gift._id} className="gift-card" onClick={() => handleGiftClick(gift)}>
@@ -130,7 +132,7 @@ const Gift = () => {
 									</div>
 								))}
 							</div>
-							<button onClick={() => setOpenModal(false)} className="gift-button button">Close</button>
+							<button onClick={() => setOpenModal(false)} className="gift-button button">Sluiten</button>
 						</div>
 					</FadeIn>
 				</>
@@ -140,14 +142,14 @@ const Gift = () => {
 					<div className="gift-background" onClick={() => setOpenModelModal(false)}></div>
 					<FadeIn className="gift-modal">
 						<div className="gift-modal-container">
-							<h1>Select a model: <b>({giftProducts[0].models.length})</b></h1>
-							<p>Note: Your gift will arrive separately in a different package, a few days later than the order itself.</p>
+							<h1>Selecteer een model: <b>({giftProducts[0].models.length})</b></h1>
+							<p>Let op: Je cadeau wordt apart bezorgd in een ander pakket en arriveert een paar dagen na je oorspronkelijke bestelling.</p>
 							<div className="gift-modal-content">
 								{giftProducts[0].models.map((model, index) => (
 									<button key={index} className="model-button" onClick={() => handleModelSelection(model)}>{model}</button>
 								))}
 							</div>
-							<button onClick={() => setOpenModelModal(false)} className="gift-button button">Close</button>
+							<button onClick={() => setOpenModelModal(false)} className="gift-button button">Sluiten</button>
 						</div>
 					</FadeIn>
 				</>
@@ -155,7 +157,7 @@ const Gift = () => {
 		</>
   ) : totalQuantity === 1 && (
 		<FadeIn>
-			<p className="gift-p">Add 1 more item to your cart to claim your free gift! 🎁 (worth: <Price price={28.95} />)</p>
+			<p className="gift-p">Voeg nog 1 item toe aan je winkelmandje om je gratis cadeau te claimen! 🎁 (Waarde van: <Price price={giftProducts.length > 0 ? giftProducts[0].oldPrice : 0} />)</p>
 		</FadeIn>
 	);
 };

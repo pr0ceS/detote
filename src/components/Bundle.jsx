@@ -101,11 +101,11 @@ const Bundle = ({ price, oldPrice, models }) => {
 				</div>
 				<div className="bundle-text">
 					<div>
-						<p className="pack">1 Pack</p>
+						<p className="pack">1 stuk</p>
 						<h1>{currency}{newPrice.toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
 					</div>
 					<div className="savings">
-						<p className="save">You save {currency}{(newOldPrice - newPrice).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
+						<p className="save">U bespaart {currency}{(newOldPrice - newPrice).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
 						<p className="was">was <b>{currency}{newOldPrice.toFixed(0)}</b></p>
 					</div>
 				</div>
@@ -118,12 +118,12 @@ const Bundle = ({ price, oldPrice, models }) => {
 				</div>
 				<div className="bundle-text">
 					<div>
-						<p className="pack">2 Pack</p>
-						<span className="percentageoff">Free Gift</span>
+						<p className="pack">2 stuks</p>
+						<span className="percentageoff">Gratis Kado</span>
 						<h1>{currency}{(newPrice * 2).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
 					</div>
 					<div className="savings">
-						<p className="save">You save {currency}{(newOldPrice * 2 - newPrice * 2).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
+						<p className="save">U bespaart {currency}{(newOldPrice * 2 - newPrice * 2).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
 						<p className="was">was <b>{currency}{(newOldPrice * 2).toFixed(0)}</b></p>
 					</div>
 				</div>
@@ -136,12 +136,12 @@ const Bundle = ({ price, oldPrice, models }) => {
 				</div>
 				<div className="bundle-text">
 					<div>
-						<p className="pack">3 Pack</p>
-						<span className="percentageoff">Free Gift + 15% off</span>
+						<p className="pack">3 stuks</p>
+						<span className="percentageoff">Kado + 15% korting</span>
 						<h1>{currency}{(newPrice * 3 * 0.85).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</h1>
 					</div>
 					<div className="savings">
-						<p className="save">You save {currency}{(newOldPrice * 3 - newPrice * 3 * 0.85).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
+						<p className="save">U bespaart {currency}{(newOldPrice * 3 - newPrice * 3 * 0.85).toLocaleString(localeData,{minimumFractionDigits:2, maximumFractionDigits:2})}</p>
 						<p className="was">was <b>{currency}{(newOldPrice * 3).toFixed(0)}</b></p>
 					</div>
 				</div>

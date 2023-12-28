@@ -111,16 +111,16 @@ const RegisterPage = () => {
 	return (
 		<form className="form" onSubmit={(e) => handleSubmit(e)}>
 			<div className="form-container">
-				<h1>Create an account</h1>
-				<p>Already have an account? <a href="/account/login">Sign in</a></p>
+				<h1>Een account aanmaken</h1>
+				<p>Heeft u al een account? <a href="/account/inloggen">Inloggen</a></p>
 				<div>
-					<label htmlFor="name">Name</label>
+					<label htmlFor="name">Volledige Naam</label>
 					<input 
 						type="text" 
 						id="name" 
 						name="name" 
 						onChange={(e) => setUser({ ...user, name: e.target.value })}
-						placeholder="Name"
+						placeholder="Volledige Naam"
 						required
 					/>
 				</div>
@@ -136,28 +136,28 @@ const RegisterPage = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="password">Password</label>
+					<label htmlFor="password">Wachtwoord</label>
 					<input
 						type="password"
 						id="password"
 						name="password"
 						onChange={(e) => setUser({ ...user, password: e.target.value })}
-						placeholder="Password"
+						placeholder="Wachtwoord"
 						required
 					/>
 				</div>
 				<div>
-					<label htmlFor="confirmPassword">Confirm password</label>
+					<label htmlFor="confirmPassword">Herhaal Wachtwoord</label>
 					<input
 						type="password"
 						id="confirmPassword"
 						name="confirmPassword"
 						onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
-						placeholder="Confirm password"
+						placeholder="Herhaal Wachtwoord"
 						required
 					/>
 				</div>
-				<button className="button" type="submit" onClick={(e) => handleSubmit(e)} >Create an account</button>
+				<button className="button" type="submit" onClick={(e) => handleSubmit(e)} >Registreren</button>
 			</div>
 		</form>
 	)

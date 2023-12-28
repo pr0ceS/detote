@@ -38,12 +38,12 @@ const GetRandomTheme = ({ price, locale, oldPrice }) => {
 
 	let themes = [
     [
-      `Save ${locale === "EU" ? "€" : locale === "US" ? "$" : locale === "UK" ? "£" : locale === "CA" ? "CA$" : "AU$"}${(newOldPrice - newPrice).toLocaleString(locale === "EU" ? "nl-nl" : `en-${locale}`,{minimumFractionDigits:(locale === "EU" ? 0 : 2), maximumFractionDigits:(locale === "EU" ? 0 : 2)})}!`,
-      "var(--primary)",
-      "white"
+      `Bespaar ${locale === "EU" ? "€" : locale === "US" ? "$" : locale === "UK" ? "£" : locale === "CA" ? "CA$" : "AU$"}${(newOldPrice - newPrice).toLocaleString(locale === "EU" ? "nl-nl" : `en-${locale}`,{minimumFractionDigits:(locale === "EU" ? 0 : 2), maximumFractionDigits:(locale === "EU" ? 0 : 2)})}!`,
+      "#ec008c",
+      "white",
+      "#ad0066"
     ],
-    [`${percentageOff}0% off`, "var(--sale-gray)", "black"],
-    ["Limited Stock", "var(--sale-primary)", "black"],
+    [`${percentageOff}0% korting`, "#E5E5EA80", "black", "#aaaaaa80"],
   ]
 
   const [data, setData] = useState(themes[Math.floor(Math.random() * themes.length)]);
@@ -54,7 +54,7 @@ const GetRandomTheme = ({ price, locale, oldPrice }) => {
   }, [percentageOff, locale]);
 
   return (
-    <span className="sale-pill" style={{ background: data[1], color: data[2] }}>
+    <span className="sale-pill" style={{ background: data[1], color: data[2], borderColor: data[3] }}>
       {data[0]}
     </span>
   );

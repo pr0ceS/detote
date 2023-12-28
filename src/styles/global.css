@@ -117,8 +117,9 @@ ol {
 }
 
 .header-container .logo {
-  font-family: "Koulen", sans-serif;
-  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-container {
@@ -205,7 +206,7 @@ ol {
   }
 
   .logo {
-    display: block !important;
+    display: flex !important;
     margin: 0 auto;
   }
 
@@ -473,15 +474,20 @@ ol {
   }
 }
 
+.fadeIn {
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: .5s;
+  animation-fill-mode:forwards;
+}
+
 .banner {
   width: 1440px;
   height: 740px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-image: url("/banner.webp");
-  background-position: 60%;
+  background-position: 50%;
+  background-size: cover;
 
   animation-name: fadeIn;
   animation-iteration-count: 1;
@@ -499,17 +505,13 @@ ol {
   }
 }
 
-.banner h2 {
-  opacity: 1;
-  font-family: "Koulen", sans-serif;
-  color: black !important;
-  font-size: 200px;
-  opacity: 0.7;
-}
 
 @media screen and (max-width: 800px) {
   .banner h2 {
     font-size: 30vw;
+  }
+  .banner img {
+    max-width: 80px;
   }
 }
 
@@ -524,10 +526,6 @@ ol {
 
 .productlist-banner img {
   width: 300px;
-}
-
-.banner img {
-  width: 500px;
 }
 
 .banner .button {
@@ -599,7 +597,7 @@ ol {
   align-items: center;
   justify-content: space-between;
   width: 260px;
-  height: 218px;
+  height: 230px;
   padding: 20px;
 }
 
@@ -644,14 +642,14 @@ ol {
 .sale-pill {
   position: absolute;
   transform: translate(-50%);
-  top: -20px;
+  top: -28px;
   padding: 6px 15px;
   border-radius: 8px;
-  border: 1px solid var(--text);
+  border: 1px solid white;
   white-space: nowrap;
   font-size: 14px;
   font-weight: 600;
-  left: 50%;
+  left: 25%;
 }
 
 .product-image {
@@ -831,6 +829,9 @@ ol {
   margin: 80px 0;
   border-radius: 10px;
   position: relative;
+
+  background: url('/detotespam.png');
+  background-color: black;
 }
 
 .infobanner .banner-dots {
@@ -1004,7 +1005,6 @@ footer {
 
 .bottom img {
   margin: 0 5px;
-  border: 1px solid #cfcfcf;
   border-radius: 5px;
 }
 
@@ -1222,6 +1222,15 @@ input::placeholder {
   justify-content: space-between;  
 }
 
+.main-image {
+  background: white;
+  cursor: grab;
+}
+
+.main-image:active {
+  cursor: grabbing !important;
+}
+
 .singlep-main-image {
   width: 600px;
 }
@@ -1231,17 +1240,14 @@ input::placeholder {
   height: 600px;
 }
 
-.image-thumbnails {
-  display: flex;
-  overflow-x: scroll;
-}
-
 .image-thumbnails img {
   object-fit: cover;
   width: 100px;
   height: 100px;
-  margin: 5px;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background: white;
 }
 
 .singlep-main-info {
@@ -1249,6 +1255,11 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+}
+
+.singlep-main-info .star-rating {
+  display: flex;
+  justify-content: flex-start; 
 }
 
 .singlep-main-info .titles a {
@@ -1422,7 +1433,7 @@ input::placeholder {
 
 .bundle-text .percentageoff {
   position: absolute;
-  left: 65px;
+  left: 68px;
   background: white;
   font-weight: 500;
   border: 1px solid var(--notblack);
@@ -1430,6 +1441,18 @@ input::placeholder {
   padding: 5px;
   font-size: 12px;
   line-height: 1;
+}
+
+@media screen and (max-width: 1000px) {
+  .bundle-text .percentageoff {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 367px) {
+  .bundle-text .percentageoff {
+    opacity: .5;
+  }
 }
 
 .bundles .option-selected .centercircle {
@@ -1556,11 +1579,77 @@ input::placeholder {
   justify-content: center;
 }
 
+.before-after {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.before-after h2 {
+  margin-bottom: 20px;
+}
+
+.before-after > div {
+  width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.before-after img {
+  width: 545px !important;
+  border: 1px solid #c5c5c5;
+}
+
 .singlep-desc-banner {
   width: 1100px;
   display: flex;
   align-items: center;
-  padding: 80px 0 0 0;
+  padding: 100px 0 0 0;
+}
+
+.singlep-desc-cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.singlep-desc-card {
+  width: 350px;
+  height: 360px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  padding: 20px 0;
+  background: var(--bg);
+}
+
+.singlep-beforeafter .singlep-desc-card {
+  height: fit-content !important;
+  padding: 0 0 20px 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.singlep-beforeafter .singlep-desc-card img {
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.singlep-desc-card h3 {
+  padding: 10px 20px;
+}
+
+.singlep-desc-card p {
+  padding: 0 20px;
+  color: var(--notblack);
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .singlep-desc .singlep-desc-banner:last-child {
@@ -1571,7 +1660,7 @@ input::placeholder {
   padding-right: 80px;
 }
 
-.singlep-desc-text h1 {
+.singlep-desc-text h2 {
   font-weight: 500;
   font-size: 35px;
 }
@@ -1623,6 +1712,12 @@ input::placeholder {
   padding: 30px 0;
 }
 
+.review > img {
+  width: 200px;
+  height: 100%;
+  margin-left: 5px;
+}
+
 .review:not(:last-child) {
   border-bottom: 1px solid #dbdbdb;
 }
@@ -1672,6 +1767,22 @@ input::placeholder {
 
 .customer-middle {
   margin-top: 10px;
+}
+
+.customer-message-image {
+  display: flex;
+}
+
+.customer-message-image img {
+  width: 200px;
+  height: auto;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+  .customer-message-image {
+    flex-direction: row-reverse;
+  }
 }
 
 .customer-middle div {
@@ -1878,6 +1989,11 @@ input::placeholder {
 }
 
 @media screen and (max-width: 1000px) {
+  .singlep-desc-card {
+    width: 90vw;
+    margin-bottom: 20px;
+    height: fit-content;
+  }
   .singlep-main-container {
     flex-direction: column;
     width: 100%;
@@ -1887,10 +2003,15 @@ input::placeholder {
     width: 100%;
   }
 
-  .singlep-main-image > img {
+  .main-image {
     object-fit: contain;
     height: 100%;
     width: 100%;
+  }
+
+  .image-thumbnail {
+    width: 100px !important;
+    height: 100px !important;
   }
 
   .singlep-main-info {
@@ -1915,8 +2036,13 @@ input::placeholder {
     margin: 0 10px;
   }
 
+  .singlep-desc > div {
+    width: 100vw;
+  }
+
   .singlep-desc-banner {
     width: 100%;
+    padding: 50px 0 0 0;
     flex-direction: column;
   }
 
@@ -1932,16 +2058,35 @@ input::placeholder {
     padding: 0 !important;
   }
 
-  .singlep-desc-text h1 {
-    padding: 0 20px;
+  .singlep-desc-text h2 {
+    width: calc(100vw - 30px);
+    margin-top: 20px;
+    font-size: 24px;
   }
 
   .singlep-desc-text p {
-    padding: 0 20px 30px 20px;
+    width: calc(100vw - 30px);
+    margin-bottom: 20px;
+  }
+
+  .single-desc-banner {
+    width: 100%;
   }
 
   .singlep-desc-banner img,
   .singlep-desc-banner video {
+    width: 90vw !important;
+  }
+
+  .before-after img {
+    margin-bottom: 10px;
+  }
+
+  .before-after {
+    width: 100%;
+  }
+
+  .before-after > div {
     width: 100%;
   }
 
@@ -1967,6 +2112,12 @@ input::placeholder {
 
   .review {
     margin: 0 20px;
+    flex-direction: column;
+  }
+
+  .review > img {
+    margin-left: 0;
+    margin-top: 15px;
   }
 
   .review > svg {
@@ -2169,7 +2320,7 @@ input::placeholder {
 }
 
 .cart-checkouts {
-  background: rgba(0, 123, 255, 0.1);
+  background: #ec008c1a;
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -2230,10 +2381,16 @@ input::placeholder {
 .checkout-top {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  flex-direction: column;
   text-align: right;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--bg2);
+  text-wrap: nowrap !important;
+}
+
+.checkout-top > div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .checkout-top p {
@@ -2250,6 +2407,7 @@ input::placeholder {
   font-size: 12px;
   border-radius: .2rem;
   font-weight: 600;
+  margin-left: auto;
   width: fit-content;
 }
 
@@ -2281,7 +2439,6 @@ input::placeholder {
 
 .cart-checkout-container .checkout img {
   margin: 0 2px;
-  border: 1px solid var(--bg);
   border-radius: 3px;
 }
 
@@ -2294,7 +2451,7 @@ input::placeholder {
 
 .protection-text {
   margin: 0 20px 0 10px;
-  width: 200px;
+  width: 65%;
 }
 
 .protection-text > p {

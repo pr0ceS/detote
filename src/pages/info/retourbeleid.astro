@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = "Retourbeleid"
+const description = "Retourbeleid"
+---
+
+<Layout title={title} description={description}>
+	<section class="contact-us">
+		<div class="contact-us-container">
+			<div>
+				<h1>Retourbeleid</h1>
+			</div>
+			<div>
+				<h2>Volledige terugbetaling voor kapotte producten</h2>
+				<p>We streven ernaar om producten in perfecte staat te leveren, maar we begrijpen dat er tijdens het transport ongelukken kunnen gebeuren. Als je product kapot of beschadigd aankomt, geven we garantie op een vervanging of creditering van uw product. De retourkosten zijn voor u.</p>
+			</div>
+			<div>
+				<h2>Return Procedure</h2>
+				<ol>
+					<li><b>Neem contact met ons op: </b>Neem contact met ons op via onze <a href="/contact">Contact pagina</a> binnen 14 dagen na ontvangst van uw product. Geef details en afbeeldingen van het beschadigde artikel.</li>
+					<li><b>Evaluatie:</b> Ons team zal de verstrekte informatie zorgvuldig evalueren. Als we concluderen dat het product bij aankomst inderdaad kapot of beschadigd is, kom je in aanmerking voor een volledige terugbetaling of een vervangend product.</li>
+					<li><b>Probleemloze terugbetaling of vervanging:</b>We doen er alles aan om het retourproces voor jou zo soepel mogelijk te laten verlopen. Geniet van een risicovrije terugbetaling of kies voor een vervanging van het beschadigde product.</li>
+				</ol>
+			</div>
+			<div>
+				<h2>3 dagen bedenktijd</h2>
+				<p>Om in aanmerking te komen voor een terugbetaling zonder een legitiem excuus, moeten klanten het retourproces starten binnen 3 dagen na ontvangst van hun product. Dit tijdsbestek stelt ons in staat om eventuele problemen snel op te lossen.</p>
+			</div>
+			<div>
+				<h2>Uitsluitingen</h2>
+				<p>Na de eerste 3 dagen na levering kunnen we geen restituties verwerken voor niet-defecte producten, tenzij er een legitieme reden is voor de retourzending.</p>
+			</div>
+			<div>
+				<h2>Neem contact met ons op</h2>
+				<p>Als u vragen hebt of verdere hulp nodig hebt met betrekking tot ons retourbeleid, aarzel dan niet om <a href="/contact">contacteer ons</a>. Onze klantenservice is er om u te helpen eventuele problemen op te lossen.</p>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	import { initVisit } from '../../stores/visit';
+
+	initVisit();
+</script>

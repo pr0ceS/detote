@@ -107,73 +107,59 @@ const Checkout = () => {
 		<FadeIn transitionDuration={200}>
 			<div className="cart-checkout-container">
 				<div className="checkout-top">
-					<h1>Your Cart <b>({totalQuantity})</b></h1>
 					<div>
+						<h1>Uw Winkelwagen <b>({totalQuantity})</b></h1>
 						<p><Price price={(discountedTotalPrice + (isChecked ? 2.99 : 0))} /></p>
-						<span>You're saving <Price price={totalSavings + 10.45} />{totalQuantityNoGift >= 3 && " + 15% off"}</span>
 					</div>
+					<span>U bespaart <Price price={totalSavings + 5.95} />{totalQuantityNoGift >= 3 && " + 15% korting"}</span>
 				</div>
 				<div className="save-shipping">
-					<p><b>Save <Price price={10.45} /> on shipping</b> if you place an order within <b><CountdownTimer /></b></p>
+					<p><b>Bespaar <Price price={5.95} /> op verzendkosten</b> als u een bestelling plaatst binnen <b><CountdownTimer /></b></p>
 				</div>
 				<div onClick={() => handleCheckout()} className="checkout">
-					<button className="button addtocart">{isLoading ? <FadeIn transitionDuration={200} className={`loadingio-spinner-rolling-2u7ujo2cx9d show-loading`}><div className="ldio-tjldnv9majp"><div></div></div></FadeIn> : "Checkout"}</button>
+					<button className="button addtocart">{isLoading ? <FadeIn transitionDuration={200} className={`loadingio-spinner-rolling-2u7ujo2cx9d show-loading`}><div className="ldio-tjldnv9majp"><div></div></div></FadeIn> : "Afrekenen"}</button>
 					<div className="payments">
 						<img
-							src={"/svg/Visa.svg"}
-							width="35"
+							src={"/svg/iDeal.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Visa"
+							alt="iDeal"
 						/>
 						<img
-							src={"/svg/mastercard.svg"}
-							width="35"
+							src={"/svg/Klarna.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Visa"
+							alt="Klarna"
 						/>
 						<img
 							src={"/svg/ApplePay.svg"}
-							width="35"
+							width="45"
 							decoding="async"
 							loading="lazy"
 							alt="ApplePay"
 						/>
 						<img
 							src={"/svg/GooglePay.svg"}
-							width="35"
+							width="45"
 							decoding="async"
 							loading="lazy"
 							alt="GooglePay"
 						/>
 						<img
-							src={"/svg/Paypal.svg"}
-							width="35"
+							src={"/svg/Visa.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Paypal"
+							alt="Visa"
 						/>
 						<img
-							src={"/svg/Klarna.svg"}
-							width="35"
+							src={"/svg/mastercard.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Klarna"
-						/>
-						<img
-							src={"/svg/iDeal.svg"}
-							width="35"
-							decoding="async"
-							loading="lazy"
-							alt="iDeal"
-						/>
-						<img
-							src={"/svg/GiroPay.svg"}
-							width="35"
-							decoding="async"
-							loading="lazy"
-							alt="GiroPay"
+							alt="mastercard"
 						/>
 					</div>
 				</div>
@@ -187,10 +173,10 @@ const Checkout = () => {
 					/>
 					<div className="protection-text">
 						<div>
-							<h2>Shipping Protection</h2>
+							<h2>Bestelling verzekeren</h2>
 							<p><Price price={2.99} /></p>
 						</div>
-						<p>Protect your order from damage, loss, or theft during shipping</p>
+						<p>Bescherm je bestelling tegen beschadiging, verlies of diefstal tijdens verzending</p>
 					</div>
 					<div className={`switch ${isChecked ? 'on' : 'off'}`} onClick={handleToggle}>
 						<div className={`slider ${isChecked ? 'on' : 'off'}`}></div>
@@ -202,69 +188,55 @@ const Checkout = () => {
 		<FadeIn transitionDuration={200}>
 			<div className="cart-checkout-container">
 				<div className="checkout-top">
-					<h1>Your Cart <b>(0)</b></h1>
 					<div>
+						<h1>Uw Winkelwagen <b>(0)</b></h1>
 						<p><Price price={0} /></p>
 					</div>
 				</div>
 				<div className="checkout">
-					<a href="/products" className="a-button">Shop all products</a>
+					<a href="/producten" className="a-button">Alle producten bekijken</a>
 					<div className="payments">
-						<img
-							src={"/svg/Visa.svg"}
-							width="35"
+					<img
+							src={"/svg/iDeal.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Visa"
+							alt="iDeal"
 						/>
 						<img
-							src={"/svg/mastercard.svg"}
-							width="35"
+							src={"/svg/Klarna.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Visa"
+							alt="Klarna"
 						/>
 						<img
 							src={"/svg/ApplePay.svg"}
-							width="35"
+							width="45"
 							decoding="async"
 							loading="lazy"
 							alt="ApplePay"
 						/>
 						<img
 							src={"/svg/GooglePay.svg"}
-							width="35"
+							width="45"
 							decoding="async"
 							loading="lazy"
 							alt="GooglePay"
 						/>
 						<img
-							src={"/svg/Paypal.svg"}
-							width="35"
+							src={"/svg/Visa.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Paypal"
+							alt="Visa"
 						/>
 						<img
-							src={"/svg/Klarna.svg"}
-							width="35"
+							src={"/svg/mastercard.svg"}
+							width="45"
 							decoding="async"
 							loading="lazy"
-							alt="Klarna"
-						/>
-						<img
-							src={"/svg/iDeal.svg"}
-							width="35"
-							decoding="async"
-							loading="lazy"
-							alt="iDeal"
-						/>
-						<img
-							src={"/svg/GiroPay.svg"}
-							width="35"
-							decoding="async"
-							loading="lazy"
-							alt="GiroPay"
+							alt="mastercard"
 						/>
 					</div>
 				</div>

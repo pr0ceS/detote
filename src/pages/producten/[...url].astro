@@ -9,6 +9,8 @@ import Dropdowns from "../../components/Dropdowns";
 import AddToCartPopup from '../../components/AddToCartPopup';
 import ReviewsPage from "../../components/ReviewsPage";
 import { urlString } from '../../utils/api';
+import CountdownTimer from '../../components/CountdownTimer';
+import SmallReview from '../../components/SmallReview';
 
 export async function getStaticPaths() {
   const products = await fetch(`${urlString}/products`).then((res) => res.json());
@@ -48,8 +50,9 @@ const description = metaDesc;
       <ProductImages images={image} client:load/>
       <section class="singlep-main-info">
         <div class="titles">
-          <a href="/products">Back to all products</a>
+          <a href="/producten">Terug naar Alle producten</a>
           <h1>{name}</h1>
+          <SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} client:load />
         </div>
         <SmallDesc smallDescs={smallDescs} client:load />
         <div class="product-payment">
@@ -65,7 +68,7 @@ const description = metaDesc;
           </p>
           <div class="product-bundle">
             <Bundle price={price} oldPrice={oldPrice} models={models} client:load/>
-            <p>Free shipping included</p>
+            <p>U heeft nog <CountdownTimer client:only /> voor gratis verzendkosten</p>
             <AddToCart product={product} small={false} client:only />
           </div>
         </div>
@@ -79,6 +82,7 @@ const description = metaDesc;
   <section class="singlep-desc">
     <div set:html={desc}></div>
   </section>
+  <ReviewsPage url={url} reviews={reviews} client:load/>
 </Layout>
 
 <script>

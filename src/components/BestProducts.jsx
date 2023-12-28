@@ -3,6 +3,8 @@ import { initProducts, productsLoading, products } from "../stores/products"
 import { locale } from "../stores/locale"
 import { useStore } from "@nanostores/react"
 import AddToCart from "./AddToCart"
+import SmallReview from "./SmallReview"
+import GetRandomTheme from "./GetRandomTheme"
 
 const BestProducts = () => {
 	const [hoverState, setHoverState] = useState({});
@@ -39,7 +41,7 @@ const BestProducts = () => {
 						return (
 						<div key={product._id} className="product-card" >
 							<div className="product-image">
-								<a href={`/products/${product.url}`}>
+								<a href={`/producten/${product.url}`}>
 									<img
 										onMouseEnter={() => handleMouseEnter(product._id)}
 										onMouseLeave={() => handleMouseLeave(product._id)}
@@ -53,7 +55,8 @@ const BestProducts = () => {
 								</a>
 							</div>
 							<div className="product-text">
-								<a href={`/products/${product.url}`}>{product.name}</a>
+								<a href={`/producten/${product.url}`}>{product.name}</a>
+								<SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} />
 								<div className="price">
 									<p>
 										{$locale.origin === "EU" && `€${product.price.toLocaleString('nl-nl',{minimumFractionDigits:2, maximumFractionDigits:2})}`}

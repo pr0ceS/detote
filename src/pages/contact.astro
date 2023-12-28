@@ -2,36 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm';
 
-const title = "Contact us"
-const description = "Having problems of any sort? Don't hesitate to contact us."
+const title = "Contact"
+const description = "Contact"
 ---
 
 <Layout title={title} description={description}>
 	<section class="contact-us">
 		<div class="contact-us-container">
 			<div class="1">
-				<h1>Contact us</h1>
-				<p>Feel free to reach out to us if you encounter any issues with your shipment, face challenges with your account, or discover defects in our products. We're here to assist you promptly and ensure your satisfaction.	</p>
-			</div>
-			<div class="2">
-				<h2>Contact Person:</h2>
-				<p>Martijn Bos</p>
+				<h1>Neem contact met ons op</h1>
+				<p>Neem gerust contact met ons op als je problemen ondervindt met je zending, problemen hebt met je account of gebreken ontdekt in onze producten. We zijn er om je snel te helpen en je tevredenheid te garanderen.</p>
 			</div>
 			<div class="3">
-				<h2>How to reach us:</h2>
+				<h2>Hoe kunt u ons bereiken?</h2>
 				<ul>
-					<li>Email: airwalletp@gmail.com</li>
-					<li>Contact form below</li>
+					<li>Email: nldetote@gmail.com</li>
+					<li>Contactformulier hieronder</li>
 				</ul>
 			</div>
 			<div class="4">
-				<p>If you have questions about our return policy, please refer to our <a href="/info/return-policy">Return Policy</a> for detailed information. For inquiries regarding our shipping policy, you can find the relevant details in our <a href="/info/shipping-policy">Shipping Policy</a>.</p>
+				<p>Als u vragen heeft over ons retourbeleid, raadpleeg dan ons <a href="/info/retourbeleid">Retourbeleid</a> voor gedetailleerde informatie. Voor vragen over ons verzendbeleid kun je de relevante details vinden in ons <a href="/info/verzendbeleid">Verzendbeleid</a></p>
 			</div>
 			<div class="5">
-				<p>We value your feedback and are committed to providing you with the best possible experience.</p>
+				<p>We waarderen je feedback en doen er alles aan om je de best mogelijke ervaring te bieden.</p>
 			</div>
 			<div class="6">
-				<h2>Contact form:</h2>
+				<h2>Contactformulier:</h2>
 				<ContactForm client:load />
 			</div>
 		</div>

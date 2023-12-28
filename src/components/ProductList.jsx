@@ -35,13 +35,13 @@ const ProductList = ({ salepage }) => {
 		<>
 			{salepage && (
 				<div className="productlist-banner">
-					<img src="/svg/BF50.webp" alt="BF50" />
+					<img src="/150sale.webp" alt="150sale" />
 				</div>
 			)}
 			{!salepage && (
 				<div className="productlist-title">
 				<div className="productlist-title-container">
-					<h1>All Products</h1>
+					<h1>Alle producten</h1>
 				</div>
 			</div>
 			)}
@@ -58,7 +58,7 @@ const ProductList = ({ salepage }) => {
 										{/* Don't forget to update currency before sending product.price and product.oldPrice */}
 										<GetRandomTheme price={product.price} locale={$locale.origin} oldPrice={product.oldPrice} />
 
-										<a href={`/products/${product.url}`}>
+										<a href={`/producten/${product.url}`}>
 											<img
 												onMouseEnter={() => handleMouseEnter(product._id)}
 												onMouseLeave={() => handleMouseLeave(product._id)}
@@ -72,7 +72,7 @@ const ProductList = ({ salepage }) => {
 										</a>
 									</div>
 									<div className="product-text">
-										<a href={`/products/${product.url}`}>{product.name}</a>
+										<a href={`/producten/${product.url}`}>{product.name}</a>
 										<SmallReview reviewCount={product.reviewCount} reviewAverage={product.reviewAverage} />
 										<div className="price">
 											<Price price={product.price} />

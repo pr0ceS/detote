@@ -33,13 +33,16 @@ const CurrentlyViewingBanner = ({ checkout }) => {
     <FadeIn transitionDuration={200}>
       <div className="fade-container" ref={fadeRef}>
         {checkout && (
-          <>
-            <b>{currentlyViewing} people</b> are checking out now
-          </>
+           <>
+              <span className="carticon carticon-active"></span>
+              <p>
+                <b>{currentlyViewing} mensen</b> zijn nu aan het afrekenen
+              </p>
+            </>
         )}
         {!checkout && (
           <>
-            {currentlyViewing} people are currently looking at this product
+            {currentlyViewing} mensen kijken momenteel naar dit product
           </>
         )}
       </div>

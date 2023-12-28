@@ -26,6 +26,7 @@
     "react-dom": "^18.0.0",
     "react-fade-in": "^2.0.1",
     "react-swipeable": "^7.0.1",
+    "swiper": "^11.0.5",
     "toastify-js": "^1.12.0"
   }
 }

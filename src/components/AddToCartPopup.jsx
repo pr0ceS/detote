@@ -42,7 +42,7 @@ const AddToCartPopup = ({ product }) => {
         </div>
         <div className="addtocart-popup-button">
           <AddToCart product={product} small={false} />
-          <p>Limited offer: buy 2 and claim your free gift! 🎁</p>
+          <p>Koop er 2 en claim je gratis cadeau! 🎁</p>
         </div>
       </div>
     </div>

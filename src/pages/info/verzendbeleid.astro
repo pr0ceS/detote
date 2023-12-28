@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = "Verzendbeleid"
+const description = "Verzendbeleid"
+---
+
+<Layout title={title} description={description}>
+	<section class="contact-us">
+		<div class="contact-us-container">
+			<div>
+				<h1>Verzendbeleid</h1>
+			</div>
+			<div>
+				<h2>Gratis verzending</h2>
+				<p>We zijn verheugd om gratis verzendkosten aan te bieden aan onze gewaardeerde klanten als u binnen de gegeven tijd een bestelling plaatst. Geniet van het gemak van het ontvangen van uw bestellingen zonder extra verzendkosten. Vergeet niet dat gratis verzending geldt als de artikelen binnen de aangegeven tijd zijn besteld.</p>
+			</div>
+			<div>
+				<h2>Bestelupdates via e-mail</h2>
+				<p>Om u op de hoogte te houden van de status van uw bestelling, zorgen we voor nauwkeurige en tijdige e-mailupdates. U ontvangt berichten over orderbevestiging, verwerking en verzending. Blijf op de hoogte van de laatste informatie over uw aankoop.</p>
+			</div>
+			<div>
+				<h2>Snelle verwerkingstijd</h2>
+				<p>Ons toegewijde team werkt snel om uw bestellingen te verwerken en verzenden. U kunt van ons verwachten dat uw bestelling binnen ongeveer 1 dag na aankoop wordt verwerkt. We streven ernaar om uw artikelen snel klaar te hebben voor verzending.</p>
+			</div>
+			<div>
+				<h2>Verzendtijden</h2>
+				<p>Specifieke levertijden voor elk product staan vermeld op de desbetreffende productpagina's. We streven ernaar om u duidelijke verwachtingen te geven over wanneer uw artikelen zullen arriveren.</p>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	import { initVisit } from '../../stores/visit';
+
+	initVisit();
+</script>
