@@ -7,6 +7,7 @@ import Price from "./Price";
 
 const Gift = () => {
   const $cart = useStore(cart);
+	console.log($cart);
   const $products = useStore(products);
   const [giftProducts, setGiftProducts] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -69,10 +70,24 @@ const Gift = () => {
 
 	const handleGiftClick = (gift) => {
 		const newSelectedGift = { ...selectedGift, ["product"]: gift};
-		setSelectedGift(newSelectedGift);
 		setOpenModal(false)
-		setOpenModelModal(true)
-    // setSelectedGift({ productId: gift._id, productInfo: gift, quantity: 1 });
+
+		const newCart = {
+			product: newSelectedGift.product,
+			quantity: 1,
+		}
+
+		if(newCart) {
+			try {
+				cart.set([...$cart, newCart])
+				document.body.style.overflow = 'auto';
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		
+		// Close the modal
+		setOpenModal(false);
   };
 
 	const handleModelSelection = async (model) => {
@@ -123,8 +138,7 @@ const Gift = () => {
 					<div className="gift-background" onClick={() => setOpenModal(false)}></div>
 					<FadeIn className="gift-modal">
 						<div className="gift-modal-container">
-							<h1>Selecteer een kleur: <b>({giftProducts.length})</b></h1>
-							<p>Let op: Je cadeau wordt apart bezorgd in een ander pakket en arriveert een paar dagen na je oorspronkelijke bestelling.</p>
+							<h1>Selecteer een product: <b>({giftProducts.length})</b></h1>
 							<div className="gift-modal-content">
 								{giftProducts.map((gift) => (
 									<div key={gift._id} className="gift-card" onClick={() => handleGiftClick(gift)}>
