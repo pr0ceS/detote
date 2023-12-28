@@ -1629,9 +1629,6 @@ input::placeholder {
 .singlep-beforeafter .singlep-desc-card {
   height: fit-content !important;
   padding: 0 0 20px 0 !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .singlep-beforeafter .singlep-desc-card img {
