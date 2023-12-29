@@ -51,6 +51,8 @@ export async function initVisit() {
 	if(data !== undefined) {
 		newVisit(data.fingerprint, data.ip, data.visitRef, data.origin, data.country, data.utm_source, data.utm_medium, data.referrer, data.device)
 	}
+
+	return await localeData.ipAddress;
 }
 
 export async function trackAddToCart() {
