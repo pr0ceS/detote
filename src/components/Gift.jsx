@@ -7,7 +7,6 @@ import Price from "./Price";
 
 const Gift = () => {
   const $cart = useStore(cart);
-	console.log($cart);
   const $products = useStore(products);
   const [giftProducts, setGiftProducts] = useState([]);
   const [openModal, setOpenModal] = useState(false);

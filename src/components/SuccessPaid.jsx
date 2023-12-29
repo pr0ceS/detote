@@ -20,7 +20,7 @@ const SuccessPaid = () => {
 
 	useEffect(() => {
 		const check = sessionStorage.getItem("OK");
-		if(!check) {
+		if(!check && $order && $order.order) {
 			pintrk('track', 'checkout', {
 				event_id: generateUUID(),
 				value: Math.round($order?.order[0]?.total / 100 * 100) / 100,
