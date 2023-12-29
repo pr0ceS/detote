@@ -10,34 +10,34 @@ const SuccessPaid = () => {
 		sessionStorage.setItem("order", $order?.order[0]?._id);
 	}
 
-	const generateUUID = () => {
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-			const r = (Math.random() * 16) | 0;
-			const v = c === 'x' ? r : (r & 0x3) | 0x8;
-			return v.toString(16);
-		});
-	};
+	// const generateUUID = () => {
+	// 	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+	// 		const r = (Math.random() * 16) | 0;
+	// 		const v = c === 'x' ? r : (r & 0x3) | 0x8;
+	// 		return v.toString(16);
+	// 	});
+	// };
 
-	useEffect(() => {
-		const check = sessionStorage.getItem("OK");
-		if(!check && $order && $order.order) {
-			pintrk('track', 'checkout', {
-				event_id: generateUUID(),
-				value: Math.round($order?.order[0]?.total / 100 * 100) / 100,
-				order_quantity: 1,
-				currency: 'EUR',
-				order_id: $order?.order[0]?._id,
-				line_items: $order?.order[0]?.products[0]?.data.map(product => ({
-					product_name: product.description,
-					product_id: product.id,
-					product_category: 'Beauty', // You might want to adjust this based on your data
-					product_price: Math.round(product.price.unit_amount / 100 * 100) / 100,
-					product_quantity: product.quantity
-				}))
-			});
-			sessionStorage.setItem("OK", true);
-		}
-	}, [])
+	// useEffect(() => {
+	// 	const check = sessionStorage.getItem("OK");
+	// 	if(!check && $order && $order.order) {
+	// 		pintrk('track', 'checkout', {
+	// 			event_id: generateUUID(),
+	// 			value: Math.round($order?.order[0]?.total / 100 * 100) / 100,
+	// 			order_quantity: 1,
+	// 			currency: 'EUR',
+	// 			order_id: $order?.order[0]?._id,
+	// 			line_items: $order?.order[0]?.products[0]?.data.map(product => ({
+	// 				product_name: product.description,
+	// 				product_id: product.id,
+	// 				product_category: 'Beauty', // You might want to adjust this based on your data
+	// 				product_price: Math.round(product.price.unit_amount / 100 * 100) / 100,
+	// 				product_quantity: product.quantity
+	// 			}))
+	// 		});
+	// 		sessionStorage.setItem("OK", true);
+	// 	}
+	// }, [])
 
   return (
     <div className="success">
